@@ -1,0 +1,33 @@
+DirectoryIndex engine/load.html
+
+RewriteEngine On
+
+RewriteCond %{QUERY_STRING} _escaped_fragment_
+RewriteRule ^(.*)$ engine/shot.php [END,PT,QSA]
+
+RewriteRule ^robots.txt$ api/utils/robot/robot
+RewriteRule ^sitemap.xml$ api/utils/robot/sitemap
+
+# Some sort of annoying bug
+RewriteCond %{HTTP:X-Forwarded-Proto} https
+RewriteRule ^api/cp$ https://minecraft.gq/api/cp/Reserve [END,R=307]
+
+RewriteRule ^api/$ api/main/home [QSA]
+RewriteRule ^api/(.*)$ rpc.php?api=$1 [END,PT,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/ejs [NC]
+RewriteCond %{REQUEST_URI} !^/js [NC]
+RewriteRule ^(.*)$ engine/hotstart.php?url=$1 [END,PT,QSA]
+
+RedirectMatch 403 /\.git
+ErrorDocument 404 /engine/404.php
+
+<FilesMatch ".(ejs|css|js)$">
+	Header set Cache-Control "public, max-age=3600"
+</FilesMatch>
+
+<FilesMatch ".(flv|gif|jpg|jpeg|png|ico|swf|pdf)$">
+	Header set Cache-Control "public, max-age=172800"
+</FilesMatch>
