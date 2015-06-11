@@ -8,10 +8,6 @@ class main extends api
     return
     [
       'design' => 'main/body',
-      'script' =>
-      [
-        '/engine/url_click.js',
-      ],
     ];
   }
 

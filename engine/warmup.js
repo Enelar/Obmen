@@ -15,6 +15,11 @@ var warmup_obj =
     phoxy.config['api_dir'] = '/' + phoxy.config['api_dir'];
     phoxy.config['ejs_dir'] = '/' + phoxy.config['ejs_dir'];
     phoxy.config['js_dir'] = '/' + phoxy.config['js_dir'];
+
+    requirejs.config(
+    {
+      baseUrl: phoxy.config['js_dir'],
+    });
   },
   OnAfterCompile: function()
   {

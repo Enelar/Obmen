@@ -1,0 +1,38 @@
+<div>
+  <%= this.DeferRender('image/placeholder', {}) %>
+  <input type='file' hidden multiple="true"/>
+</div>
+
+<%
+// Reorganize
+var root;
+var input;
+
+this.DeferCascade(function()
+{
+  root = this.first();
+  var placeholder = root.children().first();
+  placeholder.append(root.find('input[type="file"]').detach());
+
+  root.replaceWith(root = placeholder.detach());
+  input = root.find('input[type="file"]');
+})
+
+this.DeferCascade(function()
+{
+  root.click(function()
+  {
+    var loader = root.find('.loader.not');
+    if (!loader.size())
+      return;
+
+    loader.removeClass('not');
+    input.click();
+    
+    phoxy.Defer(function()
+    {
+      loader.addClass('not');
+    }, 500);
+  })
+})
+%>

@@ -1,0 +1,25 @@
+<div class='image upload index'>
+  <ul class='files to upload'>
+  </ul>
+  <%= this.DeferRender('image/charged_placeholder', {}) %>
+</div>
+
+<%
+var preview;
+
+function OnChange()
+{
+  for (var k in this.files)
+  {
+    var file = this.files[k];
+    preview.append(phoxy.DeferRender('image/preview', file));
+  }
+}
+
+
+this.DeferCascade(function()
+{
+  this.first().find('input[type="file"]').change(OnChange);
+  preview = this.first().find('.files.to.upload');
+})
+%>
