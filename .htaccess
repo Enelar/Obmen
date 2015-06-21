@@ -9,8 +9,8 @@ RewriteRule ^(.*)$ engine/shot.php [END,PT,QSA]
 RewriteRule ^robots.txt$ api/utils/robot/robot
 RewriteRule ^sitemap.xml$ api/utils/robot/sitemap
 
-RewriteRule ^api/$ api/main/home [QSA]
-RewriteRule ^api/(.*)$ /rpc.php?api=$1 [END,PT,QSA]
+RewriteRule ^api?$ api/main/home [QSA]
+RewriteRule ^api/(.*)$ /rpc.php?REDIRECTIT/$0REDIRECTIT [END,PT,QSA]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

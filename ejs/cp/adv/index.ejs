@@ -1,0 +1,41 @@
+<form class="ui fluid form">
+  <h4 class="ui dividing header">Название</h4>
+
+  <div class='ui input name'>
+    <input />
+  </div>
+
+  <h4 class="ui dividing header">Текст обьявления</h4>
+  <div class='ui input descr'>
+    <textarea>
+    </textarea>
+  </div>
+
+  <h4 class="ui dividing header">Изображения</h4>
+  <%= this.DeferRender('utils/image') %>
+
+  <div class='ui button'>
+    Создать
+  </div>
+</div>
+
+<%
+this.first(function()
+{
+  var first = this.first();
+  first.find('.button').click(function()
+  {
+    var name = first.find('.name input').val();
+    var descr = first.find('.descr textarea').val();
+
+    debugger;
+    phoxy.ApiRequest(['cp/adv/Add', name, descr], function(r)
+    {
+      if (typeof r.refuse != 'undefined')
+        return;
+      debugger;
+      //phoxy.MenuCall(['cp/adv', r.data.id]);
+    })
+  })
+})
+%>

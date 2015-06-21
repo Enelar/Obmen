@@ -45,4 +45,11 @@ function default_addons( $name )
   return $ret;
 }
 
+$arr = explode('REDIRECTIT', $_SERVER['QUERY_STRING']);
+if (count($arr) != 3)
+  die('RPC: Invalid htaccess redirect');
+$rpc_string = $arr[1];
+$_GET['api'] = $rpc_string;
+
+
 include('phoxy/index.php');
