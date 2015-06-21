@@ -11,8 +11,13 @@ class auth extends api
       (
         $this->is_user_authorized(),
         [
-          "design" => "auth/index",
+          "script" => "main/login",
+          "before" => "login_exception_hook",
           "cache" => "no",
+          "data" => 
+          [
+            "origin" => $this->GetExceptionOrigin(),
+          ],
         ]
       );
 
@@ -21,6 +26,12 @@ class auth extends api
         $this->do_oneclick_reg();
 
     return $this->get_login();
+  }
+
+  private function GetExceptionOrigin()
+  {
+    $uri = explode("REDIRECTIT", $_SERVER['QUERY_STRING'])[1];
+    return str_replace("/".phoxy_conf()['get_api_param'], "", $uri);
   }
 
   public function get_uid($id = null)

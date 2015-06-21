@@ -16,3 +16,24 @@ function call_for_login()
   phoxy.MenuCall('auth/uid');
   return true;
 }
+
+function login_exception_hook(original_callstack, context)
+{
+  function login_exception_catch()
+  {
+    if (uid())
+      phoxy.ApiRequest(context.data.origin, original_callstack);
+    else
+      original_callstack(); // do not recursive ask for resource, just report failure
+  }
+
+  var arr =
+  {
+    "design" : "auth/index",
+    "data" :
+    {
+      //"original_callstack" : login_exception_catch
+    },
+  };
+  phoxy.ApiAnswer(arr);
+}

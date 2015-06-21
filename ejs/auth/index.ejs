@@ -27,23 +27,14 @@ this.first(function()
     onHide:
       function()
       {
-        if (typeof __context.continue_handler == 'function')
-        {
-          __context.first().remove();
-          __context.continue_handler();
-          return;
-        }
-
-        $.getJSON(__context.continue, function(r)
-        {
-          __context.first().remove();
-          phoxy.ApiAnswer(r);
-        });
+        debugger;
+       // __context.first().remove();
+        __context.original_callstack();
       }
   });
 
   this.dimmer('show');
-  this.find('.auth-buttons a').click(function()
+  this.find('.buttons a').click(function()
   {
     return popitup($(this).attr('href'));
   })
