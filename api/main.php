@@ -2,7 +2,7 @@
 
 class main extends api
 {
-  protected function Reserve()
+  protected function Reserve($a = null)
   {
     unset($this->addons['result']);
     return
@@ -13,6 +13,6 @@ class main extends api
 
   protected function Home()
   {
-    return $this('api', 'urlfind', true)->Reserve();
+  
   }
 }

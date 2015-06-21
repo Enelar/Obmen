@@ -5,7 +5,7 @@ var warmup_obj =
   skip_initiation: true,
   OnWaiting: function()
   {
-    phoxy._EarlyStage.sync_require[0] = "/phoxy/libs/EJS/ejs.js";
+    phoxy._EarlyStage.sync_require[0] = "/phoxy/EJS/ejs.js";
     
     phoxy._EarlyStage.sync_require.push("//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js");
     phoxy._EarlyStage.EntryPoint();
