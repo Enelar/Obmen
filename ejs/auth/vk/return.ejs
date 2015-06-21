@@ -1,0 +1,14 @@
+<%
+if (!window.opener)
+  window.history.go(-3);
+else
+{
+  var origin = window.opener;
+  origin.uid_value = this.uid;
+  origin.$('.auth.page.dimmer').click();
+  if (origin.location.pathname == '/auth/uid')
+    origin.history.go(-1);
+
+  window.close();
+}
+%>
