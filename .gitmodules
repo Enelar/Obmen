@@ -7,3 +7,9 @@
 [submodule "phoxy"]
 	path = phoxy
 	url = https://github.com/phoxy/phoxy
+[submodule "ejs/phoxy-snippets"]
+	path = ejs/phoxy-snippets
+	url = https://github.com/phoxy/phoxy-snippets
+[submodule "ejs/snippets"]
+	path = ejs/snippets
+	url = https://github.com/phoxy/snippets
