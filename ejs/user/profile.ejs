@@ -1,0 +1,14 @@
+<img src='<%@ this.user.avatar[2] %>' />
+<h1><%@ this.user.name[0] %> <%@ this.user.name[1] %></h1>
+<div class='ui label'><%@ this.user.city %></div>
+<div class="ui items">
+<%
+for (var k in this.adv)
+{
+  var v = this.adv[k];
+%>
+  <%= this.DeferRender('blocks/adv', {adv: v}) %>
+<%
+}
+%>
+</div>

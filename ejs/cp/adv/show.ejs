@@ -1,8 +1,38 @@
-<div class='adv profile'>
-  <div class='image'>
-    <url src='http://placehold.it/350x150' />
-  </div>
+<div>
+  <h2 class='ui dividing header'>
+    <a href="/cp/adv(<%@ this.adv.id %>)"><%@ this.adv.name %></a>
+  </h2>
+  <div class='ui stackable grid'>
+    <div class='nine wide column'>
+      <img class='ui image' src='/img/placeholder.png'>
+    </div>
+    <div class='seven wide column'>
+      <h3><%@ this.adv.name %></h3>
+      <div class="sub header">
+        Обьявление #<%@ this.adv.id %> 
+        от <%= this.DeferRender('utils/snaptodate', {date: this.adv.snap}) %>
+      </div>
 
-  <h1><%@ this.title %></h1>
-  <p><%@ this.descr %></p>
+      <%= this.DeferRender(['user/link', this.adv.owner]) %>
+      <a><%@ this.adv.snap %></a>
+
+      <div class='ui label'>
+        <a>Категория1</a>
+      </div>
+      <div class='ui label'>
+        <a>Категория2</a>
+      </div>
+
+      <i class="right floated like link icon"></i>
+      <i class="right floated star link icon"></i>
+
+
+      <p><%@ this.adv.descr %></p>
+
+      <div class="ui right floated primary button">
+        Обменять
+        <i class="right chevron icon"></i>
+      </div>
+    </div>
+  </div>
 </div>

@@ -29,7 +29,7 @@ class adv extends api
   {
     return
     [
-      "design" => "blocks/adv",
+      "design" => "cp/adv/show",
       "data" =>
       [
         "adv" => db::Query("SELECT * FROM public.adv WHERE id=$1", [$id], true),
