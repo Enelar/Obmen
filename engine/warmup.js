@@ -25,6 +25,13 @@ var warmup_obj =
   {
     phoxy.ChangeHash = function(url)
     {
+      if (typeof url != 'string')
+      {
+        arr = url;
+        url = arr.shift(1);
+        url += "(" + arr.join() + ")";
+      }
+
       history.pushState({}, document.title, '/' + url);
       return false;
     }
