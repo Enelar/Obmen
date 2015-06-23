@@ -1,3 +1,13 @@
+.page.hat .descriptor .image {
+  width: 10vw;
+}
+
+.page.hat .descriptor .title {
+  display: inline-block;
+  font-size: 5em;
+  vertical-align: top;
+}
+
 .auth.dimmer .buttons {
   font-size: 5em;
 }
@@ -40,4 +50,47 @@
   color: inherit;
   font-size: 2em;
   margin: 2px 0 0 -1px;
+}
+
+.ui.container {
+  position: relative;
+  margin: 0px auto;
+  color: #898989;
+  padding-right: 20px;
+}
+
+@media only screen and (max-width : 600px) {
+  .ui.container {
+    width: auto;
+    margin: 0em 1rem;
+  }
+}
+
+@media only screen and (min-width : 600px) and (max-width : 998px) {
+  .ui.container {
+    width: auto;
+    margin: 0em 2rem;
+  }
+}
+
+@media only screen and (min-width : 998px) {
+  .ui.container {
+    padding-left: 200px;
+    padding-top: 110px;
+  }
+}
+
+@media only screen and (min-width : 998px) and (max-width: 1200px) {
+  .ui.container {
+  }
+}
+
+@media only screen and (min-width : 1200px) and (max-width: 1355px) {
+  .ui.container {
+  }
+}
+
+@media only screen and (min-width : 1355px) {
+  .ui.container {
+  }
 }

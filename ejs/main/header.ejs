@@ -1,0 +1,75 @@
+<div class='ui container page hat'>
+  <div class='descriptor'>
+    <img class='image' src='/img/logo.png' />
+    <div class='title'>
+      Обмен
+    </div>
+  </div>
+
+  <div class='description'>
+    <span class='heading'>Бесплатный обмен товаров</span>
+    Техника, одежда, ... и многое другое
+  </div>
+
+  <div class='ui menu'>
+    <div class='item'>
+      <div class='ui search selection dropdown'>
+        <div class='text'>Любая категория</div>
+        <i class='dropdown icon'></i>
+        <div class='menu'>
+          <div class='header'>Большая категория</div>
+          <div class='item'>Малая категория</div>
+          <div class='item'>Малая категория</div>
+        </div>
+      </div>
+    </div>
+
+    <div class='item'>
+      <div class='ui icon input'>
+        <input placeholder="Найти" />
+        <i class='search icon'></i>
+      </div>
+    </div>
+
+    <div class='item'>
+      <a href='/user' class='ui button'>Личный кабинет</a>
+    </div>
+
+    <div class='item'>
+      <a href='/cp/adv' class='ui primary button'>Подать обьявление</a>
+    </div>
+  </div>
+
+  <div class='ui fluid steps'>
+    <div class='active step'>
+      <i class='search icon'></i>
+      <div class='content'>
+        <div class='title'>Найдите</div>
+        <div class='description'>Найдите обьявление в своем городе</div>
+      </div>
+    </div>
+
+    <div class='active step'>
+      <i class='call icon'></i>
+      <div class='content'>
+        <div class='title'>Напишите</div>
+        <div class='description'>Свяжитесь с владельцем обьявления</div>
+      </div>
+    </div>
+
+    <div class='active step'>
+      <i class='checkmark green icon'></i>
+      <div class='content'>
+        <div class='title'>Обменяйте</div>
+        <div class='description'>Совершите обмен на то что вам нужно</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%
+this.first(function()
+{
+  this.find('.dropdown').dropdown();
+})
+%>

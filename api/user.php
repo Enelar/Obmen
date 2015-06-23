@@ -2,8 +2,9 @@
 
 class user extends api
 {
-  protected function Reserve($uid)
+  protected function Reserve($uid = null)
   {
+    $uid = $this->IfNullMe($uid);
     return
     [
       "design" => "user/profile",
@@ -15,12 +16,20 @@ class user extends api
     ];
   }
 
-  protected function link($uid)
+  protected function link($uid = null)
   {
+    $uid = $this->IfNullMe($uid);
     return
     [
       "design" => "user/link",
       "data" => db::Query("SELECT * FROM users.info WHERE uid=$1", [$uid], true),
    ];
+  }
+
+  private function IfNullMe($uid = null)
+  {
+    if (!is_null($uid))
+      return $uid;
+    return $this('api', 'auth')->uid();
   }
 }
