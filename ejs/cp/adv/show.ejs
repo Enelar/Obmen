@@ -2,19 +2,33 @@
   <h2 class='ui dividing header'>
     <a href="/cp/adv(<%@ this.adv.id %>)"><%@ this.adv.name %></a>
   </h2>
+
+
+  <div class="ui small breadcrumb">
+    <a class='section'>Обьявления</a>
+    <i class="right chevron icon divider"></i>
+    <a class='section'>Категория</a>
+    <i class="right chevron icon divider"></i>
+    <a class='section'>Меняю</a>
+  </div>
+
   <div class='ui stackable grid'>
     <div class='nine wide column'>
       <img class='ui image' src='/img/placeholder.png'>
     </div>
     <div class='seven wide column'>
-      <h3><%@ this.adv.name %></h3>
+      <i class="right floated like link icon"></i>
+      <i class="right floated star link icon"></i>
+      <%= this.DeferRender(['user/link', this.adv.owner]) %>
+
+      <h3>
+        <%@ this.adv.name %>
+      </h3>
+
       <div class="sub header">
         Обьявление #<%@ this.adv.id %> 
         от <%= this.DeferRender('utils/snaptodate', {date: this.adv.snap}) %>
       </div>
-
-      <%= this.DeferRender(['user/link', this.adv.owner]) %>
-      <a><%@ this.adv.snap %></a>
 
       <div class='ui label'>
         <a>Категория1</a>
@@ -22,10 +36,6 @@
       <div class='ui label'>
         <a>Категория2</a>
       </div>
-
-      <i class="right floated like link icon"></i>
-      <i class="right floated star link icon"></i>
-
 
       <p><%@ this.adv.descr %></p>
 
