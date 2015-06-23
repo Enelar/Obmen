@@ -1,6 +1,14 @@
-<img src='<%@ this.user.avatar[2] %>' />
-<h1><%@ this.user.name[0] %> <%@ this.user.name[1] %></h1>
-<div class='ui label'><%@ this.user.city %></div>
+<div class='profile head'>
+  <div class='ui grid'>
+    <div class='three wide column'>
+      <img src='<%@ this.user.avatar[2] %>' />
+    </div>
+    <div class='six wide column'>
+      <h1><%@ this.user.name[0] %> <%@ this.user.name[1] %></h1>
+      <div class='ui label'><%@ this.user.city %></div>
+    </div>
+</div>
+
 <div class="ui items">
 <%
 for (var k in this.adv)

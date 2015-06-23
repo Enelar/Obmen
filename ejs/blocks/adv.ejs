@@ -9,8 +9,8 @@
       <a class="header" href="/cp/adv(<%@ this.adv.id %>)"><%@ this.adv.name %></a>
 
       <div class="meta">
-        <%= this.DeferRender(['user/link', this.adv.owner]) %>
-        <a><%@ this.adv.snap %></a>
+        Обьявление #<%@ this.adv.id %> 
+        от <%= this.DeferRender('utils/snaptodate', {date: this.adv.snap}) %>
       </div>
 
       <div class="description">
