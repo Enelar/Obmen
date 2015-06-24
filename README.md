@@ -1,0 +1,1 @@
+Do not forget excute gitinithooks.sh
