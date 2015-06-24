@@ -1,4 +1,6 @@
 <?php
+define('PRODUCTION', isset($_SERVER["HEROKU_APP_DIR"]));
+
 error_reporting(E_ALL);
 ini_set('display_errors','On');
 
@@ -7,7 +9,10 @@ include_once('utils/config.php');
 include_once('phpsql/phpsql.php');
 include_once('phpsql/pgsql.php');
 $sql = new phpsql();
-$pg = $sql->Connect("pgsql://postgres@localhost/obmen");
+if (PRODUCTION)
+  $pg = $sql->Connect(str_replace('postgres', 'pgsql', $_SERVER['DATABASE_URL']));
+else
+  $pg = $sql->Connect("pgsql://postgres@localhost/obmen");
 include_once('phpsql/wrapper.php');
 
 include_once('phpsql/db.php');
