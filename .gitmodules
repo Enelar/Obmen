@@ -1,15 +1,9 @@
 [submodule "phpsql"]
 	path = phpsql
 	url = https://github.com/Enelar/phpsql
-[submodule "utils/phoxy-snippets"]
-	path = utils/phoxy-snippets
-	url = https://github.com/Enelar/phoxy-snippets
 [submodule "phoxy"]
 	path = phoxy
 	url = https://github.com/phoxy/phoxy
-[submodule "ejs/phoxy-snippets"]
-	path = ejs/phoxy-snippets
-	url = https://github.com/phoxy/phoxy-snippets
 [submodule "ejs/snippets"]
 	path = ejs/snippets
 	url = https://github.com/phoxy/snippets
