@@ -1,1 +1,6 @@
-{}
+{
+  "require" :
+  {
+    "mustangostang/spyc" : "~0.5.1"
+  }
+}

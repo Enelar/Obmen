@@ -1,6 +1,5 @@
 <?php
-if (!file_exists('secret.yaml'))
-  die('Config not deployed');
+include ('vendor/autoload.php');
 
 define('PRODUCTION', isset($_SERVER["HEROKU_APP_DIR"]));
 

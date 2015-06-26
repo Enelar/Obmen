@@ -22,12 +22,21 @@ class config
     include_once('utils/pg_wrap.php');
 
     $config = $public;
-    $config = array_merge_recursive($config, yaml_parse_file($public['config_location']));
-    $config = array_merge_recursive($config, yaml_parse_file($public['secret_location']));
+    $config = array_merge_recursive($config, $this->load_file($public['config_location']));
+    $config = array_merge_recursive($config, $this->load_file($public['secret_location']));
 
     $config = new row_wraper($config);
 
     return $config;
+  }
+
+  private function load_file($file)
+  {
+    if (function_exists('yaml_parse_file'))
+      return yaml_parse_file($file);
+    if (function_exists('spyc_load_file'))
+      return spyc_load_file($file);
+    die('Failure at yaml config parse. No tool available to reach this goal');
   }
 }
 
