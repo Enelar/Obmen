@@ -1,3 +1,3 @@
 vk:
   scope: notify,email
-  redirect_urn: auth/vk/Auth
+  redirect_urn: auth/vkcom/Auth
