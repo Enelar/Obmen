@@ -32,7 +32,7 @@ function login_exception_hook(original_callstack, context)
     "design" : "auth/index",
     "data" :
     {
-      //"original_callstack" : login_exception_catch
+      "original_callstack" : login_exception_catch
     },
   };
   phoxy.ApiAnswer(arr);
