@@ -1,4 +1,6 @@
 <?php
+include ('vendor/autoload.php');
+
 define('PRODUCTION', isset($_SERVER["HEROKU_APP_DIR"]));
 
 error_reporting(E_ALL);
