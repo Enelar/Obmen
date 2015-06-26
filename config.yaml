@@ -1,4 +1,3 @@
 vk:
-  site: http://obmen.develop-project.ru/
   scope: notify,email
-  redirect_url: http://obmen.develop-project.ru/auth/vk/Auth
+  redirect_urn: auth/vk/Auth

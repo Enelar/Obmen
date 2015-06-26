@@ -50,11 +50,12 @@ class vkcom extends api
     private function make_url()
     {
         $url = 'https://oauth.vk.com/authorize';
+        $redirect_uri = conf()->url.conf()->vk->redirect_urn;
 
         $params =
         [
             'client_id'     => conf()->vk->client_id,
-            'redirect_uri'  => conf()->vk->redirect_url,
+            'redirect_uri'  => $redirect_uri,
             'response_type' => 'code',
             'scope' => conf()->vk->scope,
         ];
@@ -63,19 +64,20 @@ class vkcom extends api
     }
 
     public function get_access_token( $code )
-    {        
-        $params = 
+    {
+        $redirect_uri = conf()->url.conf()->vk->redirect_urn;
+        $params =
         [
             'client_id' => conf()->vk->client_id,
             'client_secret' => conf()->vk->client_secret,
-            'redirect_uri'  => conf()->vk->redirect_url,
+            'redirect_uri'  => $redirect_uri,
             'code' => $code,
         ];
 
         $token = $this->integration->api_request('https://oauth.vk.com/access_token', $params);
 
         return $token;
-    } 
+    }
 
     public function save_token( $id, $token, $expire )
     {
