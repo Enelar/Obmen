@@ -32,6 +32,8 @@ class config
 
   private function load_file($file)
   {
+    if (!file_exists($file))
+      die("Failute at yaml config parse. '$file' doesnt exsist");
     if (function_exists('yaml_parse_file'))
       return yaml_parse_file($file);
     if (function_exists('spyc_load_file'))
