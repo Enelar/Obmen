@@ -2,6 +2,13 @@
 include ('vendor/autoload.php');
 
 define('PRODUCTION', isset($_SERVER["HEROKU_APP_DIR"]));
+if (PRODUCTION && !file_exists('secret.yaml'))
+{
+  $f = file_get_contents($_SERVER['SECRET_URL']);
+  file_put_contents('secret.yaml', $f);
+  if (!file_exists('secret.yaml'))
+    die('Secret disappeared');
+}
 
 error_reporting(E_ALL);
 ini_set('display_errors','On');
