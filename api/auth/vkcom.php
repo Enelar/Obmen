@@ -1,6 +1,6 @@
 <?php
 
-class vk extends api
+class vkcom extends api
 {
     private $my_token;
     private $integration;
