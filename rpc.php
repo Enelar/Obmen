@@ -1,4 +1,7 @@
 <?php
+if (!file_exists('secret.yaml'))
+  die('Config not deployed');
+
 define('PRODUCTION', isset($_SERVER["HEROKU_APP_DIR"]));
 
 error_reporting(E_ALL);
