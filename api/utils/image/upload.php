@@ -4,7 +4,7 @@ class upload extends api
 {
   private $base_prefix = "/img/uploaded/";
 
-  protected function FromString($name)
+  protected function FromDataURI($name)
   {
     $datauri = $_POST[$name];
     preg_match("/data:(.*?);(.*?),(.*)/", $datauri, $matches);
@@ -42,7 +42,7 @@ class upload extends api
 
   private function SaveFromGD($gd, $ext)
   {
-    phoxy_protected_assert(is_writable($this->base_prefix), "Upload subsytem cant initiate, target directory isnt writeable");
+   // phoxy_protected_assert(is_writable($this->base_prefix), "Upload subsytem cant initiate, target directory isnt writeable");
 
     if (!$gd)
       return false;
@@ -50,13 +50,14 @@ class upload extends api
     $tran = db::Begin();
     $name = $this->AllocImageName($ext);
       
-    $fileloc = $_SERVER['DOCUMENT_ROOT'].$this->base_prefix.$name.".".$ext;
+    $fileloc = $this->base_prefix.$name.".".$ext;
 
     $save_res = $this->SaveTo($gd, $ext, $fileloc);
     $res = $tran->Finish($save_res);
     @imagedestroy($gd);
+
     if ($res)
-      return $name;
+      return $fileloc;
     return NULL;
   }
 
@@ -90,10 +91,11 @@ class upload extends api
 
   private function SaveTo( $gd, $ext, $filename )
   {
+    $file = $_SERVER['DOCUMENT_ROOT'].$filename;
     if ($ext == 'jpg')
-      return imagejpeg($gd, $filename);
+      return imagejpeg($gd, $file);
     if ($ext == 'png')
-      return imagepng($gd, $filename);
+      return imagepng($gd, $file);
     return false;
   }
 

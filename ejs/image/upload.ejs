@@ -4,13 +4,15 @@ var data = new FormData();
 data.append("image", img.attr('src'));
 
 $.ajax({
-  url: '/api/utils/image/upload/FromString("image")',
+  url: '/api/utils/image/upload/FromDataURI("image")',
   data: data,
   processData: false,
   contentType: false,
   type: 'POST',
-  success: function(data){
-    debugger;
+  success: function(raw)
+  {
+    var r = JSON.parse(raw);
+    img.addClass('ok').attr('upload', r.data.FromDataURI);
   }
 });
 %>
