@@ -17,6 +17,11 @@
   padding: 0px;
 }
 
+.image.upload.index .files.to.upload .image {
+  height: 150px;
+  overflow: hidden;
+}
+
 .image.upload.placeholder {
   border-style: dashed;
   border-width: 3px;

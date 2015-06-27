@@ -1,5 +1,28 @@
-<% debugger %>
-<%@ this.file.name %> name<br>
-<%@ this.file.type %> type<br>
-<%@ this.file.size %> bytes<br>
-<%@ this.file.lastModifiedDate ? this.file.lastModifiedDate.toLocaleDateString() : 'n/a' %> last modified<br>
+<div class='ui small image'>
+  <img src='/img/placeholder.png' />
+</div>
+
+<%
+var f = this.file;
+var img;
+this.first(function()
+{
+  img = this.first().find('img');
+  // Only process image files.
+  if (!f.type.match('image.*'))
+    return;
+
+  var reader = new FileReader();
+
+  // Closure to capture the file information.
+  reader.onload = (function(theFile) {
+    return function(e) {
+      // Render thumbnail.
+      img.attr('src', e.target.result);
+    };
+  })(f);
+
+  // Read in the image file as a data URL.
+  reader.readAsDataURL(f);
+})
+%>
