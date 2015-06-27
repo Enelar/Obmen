@@ -9,17 +9,49 @@ var preview;
 
 function OnChange()
 {
-  for (var k in this.files)
-  {
-    var file = this.files[k];
-    preview.append(phoxy.DeferRender('image/preview', file));
-  }
+  OnNewFileList(this.file);
+}
+
+// http://www.html5rocks.com/en/tutorials/file/dndfiles/
+
+function handleDragOver(evt)
+{
+  evt.stopPropagation();
+  evt.preventDefault();
+  evt.originalEvent.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+}
+
+function OnFileDrop(evt)
+{
+  evt.stopPropagation();
+  evt.preventDefault();
+  OnNewFileList(evt.originalEvent.dataTransfer.files);
 }
 
 
 this.DeferCascade(function()
 {
   this.first().find('input[type="file"]').change(OnChange);
+
+  var dropZone = this.first().find('.placeholder');
+  dropZone.on('dragover', handleDragOver);
+  dropZone.on('drop', OnFileDrop);
+
   preview = this.first().find('.files.to.upload');
 })
+
+function OnNewFileList(filelist)
+{
+  for (var k in filelist)
+  {
+    if (!filelist.hasOwnProperty(k))
+      continue;
+    OnNewFile(filelist[k]);
+  }
+}
+
+function OnNewFile(file)
+{
+  preview.append(phoxy.DeferRender('image/preview', {file: file}));
+}
 %>
