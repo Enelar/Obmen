@@ -61,7 +61,7 @@ SET search_path = utils, pg_catalog;
 -- Name: random_string(integer); Type: FUNCTION; Schema: utils; Owner: postgres
 --
 
-CREATE FUNCTION random_string(length integer) RETURNS text
+CREATE FUNCTION random_string(length integer) RETURNS character varying
     LANGUAGE plpgsql
     AS $$
 declare
@@ -232,8 +232,8 @@ SET search_path = utils, pg_catalog;
 
 CREATE TABLE images (
     iid integer NOT NULL,
-    author integer NOT NULL,
-    name character varying(255) NOT NULL,
+    author integer,
+    name character varying(255) DEFAULT random_string(6) NOT NULL,
     ext character varying(255) NOT NULL,
     snap timestamp(6) with time zone DEFAULT now() NOT NULL
 );

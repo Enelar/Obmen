@@ -1,0 +1,16 @@
+<%
+var img = this.obj;
+var data = new FormData();
+data.append("image", img.attr('src'));
+
+$.ajax({
+  url: '/api/utils/image/upload/FromString("image")',
+  data: data,
+  processData: false,
+  contentType: false,
+  type: 'POST',
+  success: function(data){
+    debugger;
+  }
+});
+%>

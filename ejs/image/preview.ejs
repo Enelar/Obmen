@@ -19,6 +19,8 @@ this.first(function()
     return function(e) {
       // Render thumbnail.
       img.attr('src', e.target.result);
+
+      __context.first().append(phoxy.DeferRender('image/upload', {obj: img}));
     };
   })(f);
 

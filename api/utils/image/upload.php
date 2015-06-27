@@ -2,7 +2,25 @@
 
 class upload extends api
 {
-  private $base_prefix = "./img/uploaded/";
+  private $base_prefix = "/img/uploaded/";
+
+  protected function FromString($name)
+  {
+    $datauri = $_POST[$name];
+    preg_match("/data:(.*?);(.*?),(.*)/", $datauri, $matches);
+
+    phoxy_protected_assert(count($matches) == 4, "Image upload: Failure at data uri parsing");
+    list($garbage, $type, $encoded, $data) = $matches;
+    phoxy_protected_assert($ext = $this->IsTypeSupported($type), "Image upload: Unsupported filetype");
+    phoxy_protected_assert($encoded == 'base64', "Image upload: Only Base64 encoding supported");
+
+    $encodedData = str_replace(' ','+', $data);
+    $decodedData = base64_decode($encodedData);
+
+    $gd = imagecreatefromstring($decodedData);
+    return $this->SaveFromGD($gd, $ext);
+  }
+
     
   protected function Reserve( $name )
   {
@@ -18,14 +36,22 @@ class upload extends api
       return false;
 
     $gd = $this->CreateGD($ext, $file['tmp_name']);
-      
+
+    return $this->SaveFromGD($gd, $ext);
+  }
+
+  private function SaveFromGD($gd, $ext)
+  {
+    phoxy_protected_assert(is_writable($this->base_prefix), "Upload subsytem cant initiate, target directory isnt writeable");
+
     if (!$gd)
       return false;
 
     $tran = db::Begin();
     $name = $this->AllocImageName($ext);
       
-    $fileloc = $this->base_prefix.$name.".".$ext;
+    $fileloc = $_SERVER['DOCUMENT_ROOT'].$this->base_prefix.$name.".".$ext;
+
     $save_res = $this->SaveTo($gd, $ext, $fileloc);
     $res = $tran->Finish($save_res);
     @imagedestroy($gd);
@@ -37,9 +63,14 @@ class upload extends api
   private function CheckExtension( $file )
   {
     $finfo = new finfo(FILEINFO_MIME_TYPE);
+    return $this->IsTypeSupported($finfo->file($file['tmp_name']));
+  }
+
+  private function IsTypeSupported( $type )
+  {
     $ext = array_search
     (
-      $finfo->file($file['tmp_name']),
+      $type,
       [
         'jpg' => 'image/jpeg',
         'png' => 'image/png',
@@ -68,7 +99,8 @@ class upload extends api
 
   private function AllocImageName( $ext )
   {
-    $res = db::Query("INSERT INTO utils.images(author, ext) VALUES ($1, $2) RETURNING name", [C::Users()->uid(), $ext], true);
+    $uid = $this('api', 'auth')->get_uid();
+    $res = db::Query("INSERT INTO utils.images(author, ext) VALUES ($1, $2) RETURNING name", [$uid, $ext], true);
     return $res['name'];
   }
 
