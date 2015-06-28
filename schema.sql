@@ -141,6 +141,22 @@ CREATE TABLE categories (
 
 ALTER TABLE categories OWNER TO postgres;
 
+--
+-- Name: item_category; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW item_category AS
+ SELECT categories.id,
+    categories.parent,
+    categories.title,
+    categories.tree
+   FROM categories
+  WHERE ((subltree(categories.tree, 0, 1) <> '2'::ltree) AND (nlevel(categories.tree) = 2))
+  ORDER BY categories.tree, categories.title;
+
+
+ALTER TABLE item_category OWNER TO postgres;
+
 SET search_path = users, pg_catalog;
 
 --

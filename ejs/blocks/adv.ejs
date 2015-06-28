@@ -22,10 +22,7 @@ if (images == null)
         <p><%@ this.adv.descr %></p>
       </div>
       <div class='extra'>
-          <div class="ui right floated primary button">
-            Обменять
-            <i class="right chevron icon"></i>
-          </div>
+        <%= this.DeferRender('blocks/adv/start-talk', {id: this.adv.id }) %>
 
         <div class='ui label'>
           <a>Категория1</a>

@@ -1,0 +1,50 @@
+<div class='ui small modal talk'>
+  <div class='header'>
+    Обмен
+  </div>
+  <div class='content'>
+   <div class="image">
+      
+    </div>
+    <div class="description">
+      <div class=''>
+      </div>
+    </div>
+  </div>
+  <div class='actions'>
+    <div class='ui button'>Закрыть</div>
+    <div class='ui positive button send'>
+      <i class='envelope icon'></i>
+      Отправить
+    </div>
+  </div>
+</div>
+
+<%
+this.first(function()
+{
+  this.first()
+    .modal
+    ({
+      onApprove: function()
+      {
+        return false;
+      },
+      onHidden: function()
+      {
+        __context.first().remove();
+      }
+    })
+    .modal('show');
+
+  var send = this.first().find('.send.button');
+  send.click(function()
+  {
+    send.addClass('active');
+    phoxy.Defer(function()
+    {
+      send.removeClass('active');
+    }, 1000);
+  })
+})
+%>

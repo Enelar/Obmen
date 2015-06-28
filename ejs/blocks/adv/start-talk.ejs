@@ -1,0 +1,16 @@
+<div class="ui right floated primary button">
+  Обменять
+  <i class="right chevron icon"></i>
+</div>
+
+<%
+this.first(function()
+{
+  var first = this.first();
+
+  first.click(function()
+  {
+    phoxy.ApiRequest('talk/Start');
+  })
+})
+%>
