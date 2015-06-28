@@ -1,21 +1,24 @@
-<form class="ui fluid form">
-  <h4 class="ui dividing header">Название</h4>
+<div>
+  <h1>Предложить на обмен</h1>
+  <h2>Опишите в двух словах что вы хотели бы обменять</h2>
+  <form class="ui fluid form">
+    <h4 class="ui dividing header">Изображения</h4>
+    <%= this.DeferRender('utils/image') %>
 
-  <div class='ui input name'>
-    <input />
-  </div>
+    <h4 class="ui dividing header">Название</h4>
+    <div class='ui input name'>
+      <input />
+    </div>
 
-  <h4 class="ui dividing header">Текст обьявления</h4>
-  <div class='ui input descr'>
-    <textarea>
-    </textarea>
-  </div>
+    <h4 class="ui dividing header">Текст обьявления</h4>
+    <div class='ui input descr'>
+      <textarea>
+      </textarea>
+    </div>
 
-  <h4 class="ui dividing header">Изображения</h4>
-  <%= this.DeferRender('utils/image') %>
-
-  <div class='ui button'>
-    Создать
+    <div class='ui button'>
+      Создать
+    </div>
   </div>
 </div>
 
