@@ -20,6 +20,17 @@
 </div>
 
 <%
+function CollectImages()
+{ // todo: through chain
+  var images = [];
+  __context.first().find('.files.to.upload img.ok').each(function()
+  {
+    images.push($(this).attr('upload'));
+  })
+
+  return images;
+}
+
 this.first(function()
 {
   var first = this.first();
@@ -29,7 +40,7 @@ this.first(function()
     var descr = first.find('.descr textarea').val();
 
     debugger;
-    phoxy.ApiRequest(['cp/adv/Add', name, descr], function(r)
+    phoxy.ApiRequest(['cp/adv/Add', name, descr, CollectImages()], function(r)
     {
       if (typeof r.refuse != 'undefined')
         return;

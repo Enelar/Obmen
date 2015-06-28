@@ -17,10 +17,10 @@ class adv extends api
     ];
   }
 
-  protected function Add($name, $text)
+  protected function Add($name, $text, $images)
   {
-    $adid = db::Query("INSERT INTO public.adv(owner, name, descr) VALUES ($1, $2, $3) RETURNING id",
-      [$this('api', 'auth')->uid(), $name, $text], true);
+    $adid = db::Query("INSERT INTO public.adv(owner, name, descr, images) VALUES ($1, $2, $3, $4) RETURNING id",
+      [$this('api', 'auth')->uid(), $name, $text, $images], true);
 
     return $adid->id;
   }
