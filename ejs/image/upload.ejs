@@ -12,7 +12,19 @@ $.ajax({
   success: function(raw)
   {
     var r = JSON.parse(raw);
-    img.addClass('ok').attr('upload', r.data.FromDataURI);
+
+    if (typeof r.data.FromDataURI == 'string')
+      return img.addClass('ok').attr('upload', r.data.FromDataURI);
+    img.addClass('fail');
+    phoxy.Defer(function()
+    {
+      img.transition('fade')
+
+      phoxy.Defer(function()
+      {
+        img.parents('.image').first().remove();
+      }, 500);
+    }, 1000);
   }
 });
 %>
