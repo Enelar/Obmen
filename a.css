@@ -1,11 +1,15 @@
 .page.hat .descriptor .image {
-  width: 10vw;
+  display: inline-block;
 }
 
 .page.hat .descriptor .title {
   display: inline-block;
   font-size: 5em;
   vertical-align: top;
+}
+
+#canvas {
+  padding-top: 30px;
 }
 
 .auth.dimmer .buttons {
@@ -81,7 +85,6 @@
 @media only screen and (min-width : 998px) {
   .ui.container {
     padding-left: 200px;
-    padding-top: 110px;
   }
 }
 

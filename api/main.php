@@ -15,7 +15,7 @@ class main extends api
   {
     return
     [
-      'design' => 'snippets/empty',
+      'design' => 'main/home',
     ];
   }
 

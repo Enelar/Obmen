@@ -56,7 +56,8 @@ $arr = explode('REDIRECTIT', $_SERVER['QUERY_STRING']);
 if (count($arr) != 3)
   die('RPC: Invalid htaccess redirect');
 $rpc_string = $arr[1];
+if ($rpc_string == '/api/')
+  $rpc_string = '/api/main/Home';
 $_GET['api'] = $rpc_string;
-
 
 include('phoxy/index.php');
