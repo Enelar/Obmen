@@ -42,7 +42,7 @@ class upload extends api
 
   private function SaveFromGD($gd, $ext)
   {
-   // phoxy_protected_assert(is_writable($this->base_prefix), "Upload subsytem cant initiate, target directory isnt writeable");
+    phoxy_protected_assert(is_writable($_SERVER['DOCUMENT_ROOT'].$this->base_prefix), "Upload subsytem cant initiate, target directory isnt writeable");
 
     if (!$gd)
       return false;
