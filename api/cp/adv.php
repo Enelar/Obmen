@@ -20,12 +20,13 @@ class adv extends api
   protected function Add($name, $text, $images)
   {
     $imageobj = $this('api/utils', 'image');
+    $uploadobj = $this('api/utils/image', 'upload');
 
     $names = [];
     $iis = [];
     foreach ($images as $image)
     {
-      $names[] = $image->name;
+      $names[] = $uploadobj->LocationByName($image->name);
       $iis[] = (int)$image->id;
       $imageobj->ShelterOrphan($image->id, $image->name);
     }
