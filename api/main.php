@@ -13,6 +13,19 @@ class main extends api
 
   protected function Home()
   {
-  
+    return
+    [
+      'design' => 'snippets/empty',
+    ];
+  }
+
+  protected function Head()
+  {
+    unset($this->addons['result']);
+    return
+    [
+      'design' => 'main/header',
+      'result' => 'header',
+    ];
   }
 }

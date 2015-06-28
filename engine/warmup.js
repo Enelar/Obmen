@@ -80,9 +80,12 @@ var warmup_obj =
     phoxy.Log(3, "Initial handlers complete");
     phoxy.MenuCall(location.pathname.substr(1) + location.search, function()
     {
-      $('.removeafterload').remove();
-      $('body').trigger('initialrender');
-      phoxy.Log(3, "First page rendered");
+      phoxy.ApiRequest('main/Head', function()
+      {
+        $('.removeafterload').remove();
+        $('body').trigger('initialrender');
+        phoxy.Log(3, "First page rendered");
+      })
     });
   }
 };
