@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "23c539d201d83adc06e61a6e6e1a8bec",
+    "hash": "ae4c9db3c273be45c13b253de3964102",
     "packages": [
         {
             "name": "mustangostang/spyc",
@@ -60,6 +60,9 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "~5.5",
+        "ext-gd": "*"
+    },
     "platform-dev": []
 }
