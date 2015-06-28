@@ -1,7 +1,7 @@
 <div class='profile head'>
   <div class='ui grid'>
     <div class='three wide column'>
-      <img src='<%@ this.user.avatar[2] %>' />
+      <img src='<%@ this.user.avatar[2] %>' class='ui fluid image'/>
     </div>
     <div class='six wide column'>
       <h1><%@ this.user.name[0] %> <%@ this.user.name[1] %></h1>
@@ -10,6 +10,7 @@
 </div>
 
 <div class="ui items">
+  <h2>Обьявления пользователя</h2>
 <%
 for (var k in this.adv)
 {

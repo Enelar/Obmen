@@ -63,6 +63,10 @@
   margin: 2px 0 0 -1px;
 }
 
+.talk.modal .actions .button {
+  vertical-align: top;
+}
+
 .ui.container {
   position: relative;
   margin: 0px auto;
