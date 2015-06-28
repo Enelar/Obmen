@@ -19,8 +19,19 @@ class adv extends api
 
   protected function Add($name, $text, $images)
   {
-    $adid = db::Query("INSERT INTO public.adv(owner, name, descr, images) VALUES ($1, $2, $3, $4) RETURNING id",
-      [$this('api', 'auth')->uid(), $name, $text, $images], true);
+    $imageobj = $this('api/utils', 'image');
+
+    $names = [];
+    $iis = [];
+    foreach ($images as $image)
+    {
+      $names[] = $image->name;
+      $iis[] = (int)$image->id;
+      $imageobj->ShelterOrphan($image->id, $image->name);
+    }
+
+    $adid = db::Query("INSERT INTO public.adv(owner, name, descr, images, iid) VALUES ($1, $2, $3, $4, $5) RETURNING id",
+      [$this('api', 'auth')->uid(), $name, $text, $names, $iis], true);
 
     return $adid->id;
   }

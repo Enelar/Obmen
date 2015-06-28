@@ -99,7 +99,8 @@ CREATE TABLE adv (
     name character varying(255),
     descr text,
     images character varying(255)[],
-    snap timestamp(6) with time zone DEFAULT now() NOT NULL
+    snap timestamp(6) with time zone DEFAULT now() NOT NULL,
+    iid integer[]
 );
 
 
