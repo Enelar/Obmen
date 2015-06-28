@@ -1,7 +1,12 @@
 <div class="ui items">
   <div class="item">
     <a class="ui small image">
-      <img src="http://placehold.it/150x150">
+<%
+images = this.adv.images;
+if (images == null)
+  images = ["/img/placeholder.png"];
+%>
+      <img src="<%@ images[0] %>">
     </a>
     <div class="content">
       <i class="right floated like link icon"></i>
