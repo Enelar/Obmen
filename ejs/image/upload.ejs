@@ -13,8 +13,12 @@ $.ajax({
   {
     var r = JSON.parse(raw);
 
-    if (typeof r.data.FromDataURI == 'string')
-      return img.addClass('ok').attr('upload', r.data.FromDataURI);
+    if (typeof r.data.image !== 'undefined')
+      return img.addClass('ok')
+        .attr('upload', r.data.image.urn)
+        .attr('name', r.data.image.name)
+        .attr('iid', r.data.image.id);
+
     img.addClass('fail');
     phoxy.Defer(function()
     {

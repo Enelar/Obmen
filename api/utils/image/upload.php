@@ -56,9 +56,21 @@ class upload extends api
     $res = $tran->Finish($save_res);
     @imagedestroy($gd);
 
-    if ($res)
-      return $fileloc;
-    return NULL;
+    if (!$res)
+      return NULL;
+    
+    return
+    [
+      "data" =>
+      [
+        "image" =>
+        [
+          "urn" => $fileloc,
+          "name" => $name,
+          "id" => $this->IdByName($name),
+        ]
+      ],
+    ];
   }
 
   private function CheckExtension( $file )
@@ -104,6 +116,12 @@ class upload extends api
     $uid = $this('api', 'auth')->get_uid();
     $res = db::Query("INSERT INTO utils.images(author, ext) VALUES ($1, $2) RETURNING name", [$uid, $ext], true);
     return $res['name'];
+  }
+
+  private function IdByName( $name )
+  {
+    $res = $this->info($name);
+    return $res->iid;
   }
 
   public function LocationByName( $name )

@@ -25,7 +25,11 @@ function CollectImages()
   var images = [];
   __context.first().find('.files.to.upload img.ok').each(function()
   {
-    images.push($(this).attr('upload'));
+    images.push(
+    {
+      id: $(this).attr('iid'),
+      name: $(this).attr('name'),
+    });
   })
 
   return images;
