@@ -2,9 +2,9 @@
 
 class user extends api
 {
-  protected function Reserve($a)
+  protected function Reserve()
   {
-    return $this('api/cp', 'profile', true)->Reserve();
+    return $this('api/cp', 'profile', true)->Reserve($this->IfNullMe());
   }
 
   protected function link($uid = null)
