@@ -46,7 +46,6 @@ this.first(function()
     var name = first.find('.name input').val();
     var descr = first.find('.descr textarea').val();
 
-    debugger;
     phoxy.ApiRequest(['cp/adv/Add', name, descr, CollectImages()], function(r)
     {
       if (typeof r.refuse != 'undefined')

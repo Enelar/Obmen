@@ -27,7 +27,7 @@ var warmup_obj =
     {
       if (typeof url !== 'string')
       {
-        arr = url;
+        arr = url = url.slice(0)
         url = arr.shift(1);
         url += "(" + arr.join() + ")";
       }
