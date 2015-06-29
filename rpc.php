@@ -20,6 +20,9 @@ include_once('phpsql/wrapper.php');
 include_once('phpsql/db.php');
 db::Bind(new phpsql\utils\wrapper($pg));
 
+include("sql/loader.php");
+
+
 function real_ip()
 {
   global $_SERVER;
