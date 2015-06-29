@@ -3,8 +3,8 @@
 }
 
 .talk.modal .send.button.active span {
-  a-webkit-animation: fadeOutText 0.5s;
-  a-moz-animation: fadeOutText 0.5s;
+  -webkit-animation: fadeOutText 0.5s;
+  -moz-animation: fadeOutText 0.5s;
   animation: fadeOutText 0.5s;
 }
 
