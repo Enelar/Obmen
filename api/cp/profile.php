@@ -11,7 +11,7 @@ class profile extends api
       "data" =>
       [
         "user" => db::Query("SELECT * FROM users.info WHERE uid=$1", [$uid], true),
-        "adv" => db::Query("SELECT * FROM public.adv WHERE owner=$1", [$uid]),
+        "adv" => db::Query("SELECT * FROM public.adv WHERE owner=$1 ORDER BY id DESC", [$uid]),
       ],
     ];
   }
