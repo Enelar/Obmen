@@ -41,7 +41,10 @@ class auth extends api
     global $_SESSION;
 
     if (!is_null($id))
+    {
       $_SESSION['uid'] = $id;
+      session_regenerate_id();
+    }
     if (isset($_SESSION['uid']))
       return $_SESSION['uid'];
     return 0;
