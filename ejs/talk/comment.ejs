@@ -1,0 +1,26 @@
+<div class="comment">
+  <a class="avatar">
+    <img src="<%@ this.author.img[0] %>">
+  </a>
+  <div class="content">
+    <a class="author"><%@ this.author.name[0] %> <%@ this.author.name[0] %></a>
+<%
+if (typeof this.messages === 'undefined')
+  this.messages = [this.message];
+%>
+    <div class="metadata">
+      <div class="date"><%@ this.messages[0].snap %></div>
+    </div>
+<%
+for (var k in this.messages)
+{
+  var v = this.messages[k];
+%>
+    <div class="text">
+      <%@ v.text %>
+    </div>
+<%
+}
+%>    
+  </div>
+</div>

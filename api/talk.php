@@ -14,4 +14,9 @@ class talk extends api
       ],
     ];
   }
+
+  protected function OnAdv($id)
+  {
+    
+  }
 }
