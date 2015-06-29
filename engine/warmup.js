@@ -25,7 +25,7 @@ var warmup_obj =
   {
     phoxy.ChangeHash = function(url)
     {
-      if (typeof url != 'string')
+      if (typeof url !== 'string')
       {
         arr = url;
         url = arr.shift(1);
@@ -39,8 +39,8 @@ var warmup_obj =
     var not_found = phoxy.ApiAnswer;
     phoxy.ApiAnswer = function(data)
     {
-      if (data["error"] == 'Module not found'
-          || data["error"] == "Unexpected RPC call (Module handler not found)")
+      if (data["error"] === 'Module not found'
+          || data["error"] === "Unexpected RPC call (Module handler not found)")
       {
         $('.removeafterload').remove();
         return phoxy.ApiRequest("utils/page404");
@@ -52,7 +52,7 @@ var warmup_obj =
     var direct_request = phoxy.ApiRequest;
     phoxy.ApiRequest = function(origin, callback, direct)
     {
-      if (typeof direct == 'undefined' || direct != true)
+      if (typeof direct === 'undefined' || direct !== true)
         return direct_request.apply(this, arguments);
       if (typeof origin == 'string')
         origin += "?direct";
@@ -90,7 +90,7 @@ var warmup_obj =
   }
 };
 
-if (typeof phoxy.prestart == 'undefined')
+if (typeof phoxy.prestart === 'undefined')
   phoxy = warmup_obj;
 else
 {
@@ -98,13 +98,13 @@ else
   phoxy.prestart.OnWaiting();
 }
 
-if (typeof YOUR_ANALYTICS_KEY != 'undefined')
+if (typeof YOUR_ANALYTICS_KEY !== 'undefined')
   if(window.analytics=window.analytics||[],window.analytics.included)window.console&&console.error&&console.error("analytics.js included twice");else{window.analytics.included=!0,window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(a){return function(){var n=Array.prototype.slice.call(arguments);return n.unshift(a),window.analytics.push(n),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(a){var n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+a+"/analytics.min.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(n,t)},window.analytics.SNIPPET_VERSION="2.0.9",
     window.analytics.load(YOUR_ANALYTICS_KEY)}
 
 (function()
 {
-  if (typeof require == 'undefined')
+  if (typeof require === 'undefined')
     return setTimeout(arguments.callee, 50);
   clearTimeout(require_not_loading);
 

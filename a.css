@@ -20,7 +20,7 @@
 
 .image.upload.index .files.to.upload {
   display: inline;
-  padding: 0px;
+  padding: 0;
 }
 
 .image.upload.index .files.to.upload .image {
@@ -69,7 +69,7 @@
 
 .ui.container {
   position: relative;
-  margin: 0px auto;
+  margin: 0 auto;
   color: #898989;
   padding-right: 20px;
 }
@@ -77,14 +77,14 @@
 @media only screen and (max-width : 600px) {
   .ui.container {
     width: auto;
-    margin: 0em 1rem;
+    margin: 0 1rem;
   }
 }
 
 @media only screen and (min-width : 600px) and (max-width : 998px) {
   .ui.container {
     width: auto;
-    margin: 0em 2rem;
+    margin: 0 2rem;
   }
 }
 

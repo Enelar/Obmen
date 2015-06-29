@@ -2,7 +2,7 @@
 
 class main extends api
 {
-  protected function Reserve($a = null)
+  protected function Reserve()
   {
     unset($this->addons['result']);
     return

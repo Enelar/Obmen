@@ -6,7 +6,7 @@ url_click.hook_url_click = function()
   {
     var url = $(this).attr('href');
     
-    if (url == undefined || $(this).is('[not-phoxy]'))
+    if (url === undefined || $(this).is('[not-phoxy]'))
       return true;
 
     return url_click.url_hook(url, false);
@@ -21,11 +21,11 @@ url_click.hook_url_click = function()
 
 url_click.url_hook = function (url, not_push)
 {
-  if (url.indexOf('#') != -1)
+  if (url.indexOf('#') !== -1)
     return true;
   
 
-  if (url[0] == '/')
+  if (url[0] === '/')
     url = url.substring(1);
   
   phoxy.MenuCall(url, undefined, undefined, not_push);

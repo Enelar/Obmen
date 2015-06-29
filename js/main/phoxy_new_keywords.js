@@ -10,10 +10,10 @@ function PatchPhoxy(originalfunction, newfunction)
 // style keyword
 PatchPhoxy('ApiAnswer', function()
 {
-  if (typeof arguments[0]['style'] != 'undefined')
+  if (typeof arguments[0]['style'] !== 'undefined')
   {
     var style = arguments[0]['style'];
-    if (typeof style == 'string')
+    if (typeof style === 'string')
       style = [style];
 
     for (var k in style)

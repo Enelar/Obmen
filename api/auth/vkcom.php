@@ -2,7 +2,6 @@
 
 class vkcom extends api
 {
-    private $my_token;
     private $integration;
     private $raw_integration;
 
