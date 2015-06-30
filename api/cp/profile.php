@@ -4,15 +4,33 @@ class profile extends api
 {
   protected function Reserve($uid = null)
   {
-    $uid = $this('api', 'user')->IfNullMe($uid);
+    if (is_null($uid))
+      $uid = $this('api', 'auth')->uid();
+
     return
     [
       "design" => "user/profile",
       "data" =>
       [
         "user" => db::Query("SELECT * FROM users.info WHERE uid=$1", [$uid], true),
-        "adv" => db::Query("SELECT * FROM public.adv WHERE owner=$1 ORDER BY id DESC", [$uid]),
+        "adv" => $this->Advertisments($uid),
       ],
     ];
+  }
+
+  protected function MyAdvertisments()
+  {
+    return
+    [
+      "data" =>
+      [
+        "adv" => $this->Advertisments($this('api', 'auth')->uid()),
+      ]
+    ]
+  }
+
+  public function Advertisments($uid)
+  {
+    return db::Query("SELECT * FROM public.adv WHERE owner=$1 ORDER BY id DESC", [$uid]);
   }
 }
