@@ -40,6 +40,7 @@ function phoxy_conf()
   global $_SERVER;
   $ret["ip"] = real_ip();
   $ret['adminip'] = false;
+  $ret['api_xss_prevent'] = PRODUCTION;
   if (!$ret['adminip'])
     ini_set('display_errors','Off');
   return $ret;

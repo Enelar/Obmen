@@ -1,0 +1,13 @@
+<div class='ui four column grid my items'>
+<%
+for (var k in this.adv)
+{
+  var v = this.adv[k];
+%>
+  <div class='column'>
+    <img class='ui fluid image' src='<%@ v.images[0] %>' />
+  </div>
+<%
+}
+%>
+</div>

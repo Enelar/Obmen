@@ -1,0 +1,43 @@
+<div class='ui long scrolling modal talk'>
+  <div class='header'>
+    Обмен
+  </div>
+  <div class='content'>
+    <div class="description">
+      <div class=''>
+        Декср <%@ this.adv %>
+
+        <%= this.DeferRender('talk/offer/items', 'cp/profile/MyAdvertisments') %>
+      </div>
+    </div>
+  </div>
+  <div class='actions'>
+    <div class='ui positive button offer'>
+      <span>Предложить</span>
+    </div>
+  </div>
+</div>
+
+<%
+this.first(function()
+{
+  this.first()
+    .modal
+    ({
+      onApprove: function()
+      {
+        return false;
+      },
+      onHidden: function()
+      {
+        __context.first().remove();
+      }
+    }).modal('show');
+})
+
+this.DeferCascade(function()
+{
+  for ($i = 0; $i < 2000; $i+= 200)
+    phoxy.Defer(function() {__context.first().modal('refresh')}, $i);
+})
+%>

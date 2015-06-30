@@ -48,4 +48,10 @@ class adv extends api
       ],
     ];
   }
+
+  public function Owner($id)
+  {
+    $res = db::Query("SELECT owner FROM public.adv WHERE id=$1", [$id], true);
+    return $res->owner;
+  }
 }

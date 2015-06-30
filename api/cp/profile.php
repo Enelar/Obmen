@@ -25,8 +25,8 @@ class profile extends api
       "data" =>
       [
         "adv" => $this->Advertisments($this('api', 'auth')->uid()),
-      ]
-    ]
+      ],
+    ];
   }
 
   public function Advertisments($uid)

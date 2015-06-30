@@ -10,7 +10,7 @@ this.first(function()
 
   first.click(function()
   {
-    phoxy.ApiRequest('talk/Start');
+    phoxy.ApiRequest(['room', __context.id]);
   })
 })
 %>
