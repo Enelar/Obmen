@@ -22,6 +22,7 @@ class room extends api
 
   protected function Create($aid, $offers)
   {
+    unset($this->addons['result']);
     $advobj = $this('api/cp', 'adv');
 
     $from = $this('api', 'auth')->uid();
