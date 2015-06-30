@@ -31,6 +31,14 @@ this.first(function()
     ({
       onApprove: function()
       {
+        var offer = [];        
+        __context.first().find('.my.items .selected').each(function()
+        {
+          offer.push($(this).attr('data-id'));
+        });
+
+        phoxy.ApiRequest(["room/Create", __context.adv, offer]);
+
         return false;
       },
       onHidden: function()
