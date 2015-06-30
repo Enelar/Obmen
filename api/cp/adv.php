@@ -54,4 +54,18 @@ class adv extends api
     $res = db::Query("SELECT owner FROM public.adv WHERE id=$1", [$id], true);
     return $res->owner;
   }
+
+  protected function Name($id)
+  {
+    $res = db::Query("SELECT name FROM public.adv WHERE id=$1", [$id], true);
+
+    return
+    [
+      "design" => "snippets/echo",
+      "data" =>
+      [
+        "name" => $res->name,
+      ],
+    ];
+  }
 }

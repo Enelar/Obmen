@@ -1,18 +1,23 @@
-<div class='ui long scrolling modal talk'>
+<div class='ui long scrolling modal offer'>
   <div class='header'>
-    Обмен
+    Выберите что вы готовы предложить в обмен на      
+      <a href='cp/adv(<%@ this.adv %>'>
+        <%= this.DeferRender(['cp/adv/Name', this.adv]) %>
+      </a>
+    на выбор
   </div>
   <div class='content'>
     <div class="description">
-      <div class=''>
-        Декср <%@ this.adv %>
+      <div class=''>        
+        Выбрано <snap class='ui blue label selected count'>0</snap> вещей
 
         <%= this.DeferRender('talk/offer/items', 'cp/profile/MyAdvertisments') %>
       </div>
     </div>
   </div>
   <div class='actions'>
-    <div class='ui positive button offer'>
+    Выбрано <snap class='ui blue label selected count'>0</snap> вещей
+    <div class='ui positive disabled button offer'>
       <span>Предложить</span>
     </div>
   </div>
@@ -39,5 +44,23 @@ this.DeferCascade(function()
 {
   for ($i = 0; $i < 2000; $i+= 200)
     phoxy.Defer(function() {__context.first().modal('refresh')}, $i);
+})
+
+var selected = 0;
+this.DeferCascade(function()
+{
+  var count = __context.first().find('.selected.count');
+  var action = __context.first().find('.positive.button');
+  __context.first().find('.image').click(function()
+  {
+    var on = $(this).toggleClass('selected').hasClass('selected');
+    selected += -1 + 2 * on;
+    count.html(selected);
+
+    if (selected)
+      action.removeClass('disabled');
+    else
+      action.addClass('disabled');
+  })
 })
 %>
