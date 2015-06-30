@@ -4,11 +4,11 @@ class room extends api
 {
   protected function Reserve($adv)
   {
-    $uid = $this('api', 'auth')->uid();
-    if ($room = $this->FindRoom($uid, $adv))
-      $this('api', 'talk', true)->OnAdv($room);
-
     unset($this->addons['result']);
+    $uid = $this('api', 'auth')->uid();
+
+    if ($room = $this->FindRoom($uid, $adv))
+      return $this('api', 'talk', true)->Start($room);
 
     return
     [
@@ -67,9 +67,9 @@ class room extends api
 
   private function FindRoom($from, $about)
   {
-    $res = db::Query("SELECT aid FROM public.talks WHERE \"from\"=$1 AND adv=$2", [$from, $about], true);
+    $res = db::Query("SELECT tid FROM public.talks WHERE \"from\"=$1 AND adv=$2 LIMIT 1", [$from, $about], true);
     if (!$res())
       return false;
-    return $res->aid;
+    return $res->tid;
   }
 }
