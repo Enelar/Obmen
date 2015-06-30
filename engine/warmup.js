@@ -29,7 +29,8 @@ var warmup_obj =
       {
         arr = url = url.slice(0)
         url = arr.shift(1);
-        url += "(" + arr.join() + ")";
+        if (arr.length > 0)
+          url += "(" + arr.join() + ")";
       }
 
       history.pushState({}, document.title, '/' + url);
