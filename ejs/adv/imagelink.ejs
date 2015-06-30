@@ -1,0 +1,9 @@
+<%
+debugger;
+images = this.images;
+if (images == null)
+  images = ["/img/placeholder.png"];
+%>
+<a href='cp/adv(<%@ this.id %>)' data-id='<%@ this.id %>'>
+  <img class='ui fluid image' src='<%@ images[0] %>'>
+</a>

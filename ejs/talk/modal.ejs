@@ -1,12 +1,28 @@
+<%
+debugger;
+%>
 <div class='ui small modal talk'>
   <div class='header'>
     Обмен
   </div>
   <div class='content'>
    <div class="image">
-      
+      <%= this.DeferRender(['cp/adv/imagelink', this.adv]) %>
     </div>
     <div class="description">
+      Предлагаю обменять на одну из вещей:
+<%
+for (var k in this.offer)
+{
+  var v = this.offer[k];
+%>
+  <%= this.DeferRender(['cp/adv/imagelink', v], undefined, function()
+  {
+    this.first().find('img').addClass('tiny').removeClass('fluid');
+  }) %>
+<%
+}
+%>
       <div class=''>
       </div>
     </div>

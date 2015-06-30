@@ -44,20 +44,20 @@ class adv extends api
       "design" => "cp/adv/show",
       "data" =>
       [
-        "adv" => db::Query("SELECT * FROM public.adv WHERE id=$1", [$id], true),
+        "adv" => $this->info($id),
       ],
     ];
   }
 
   public function Owner($id)
   {
-    $res = db::Query("SELECT owner FROM public.adv WHERE id=$1", [$id], true);
+    $res = $this->info($id);
     return $res->owner;
   }
 
   protected function Name($id)
   {
-    $res = db::Query("SELECT name FROM public.adv WHERE id=$1", [$id], true);
+    $res = $this->info($id);
 
     return
     [
@@ -67,5 +67,19 @@ class adv extends api
         "name" => $res->name,
       ],
     ];
+  }
+
+  protected function imagelink($id)
+  {
+    return
+    [
+      "design" => "adv/imagelink",
+      "data" => $this->info($id),
+    ];
+  }
+
+  public function info($id)
+  {
+    return db::Query("SELECT * FROM public.adv WHERE id=$1", [$id], true);;
   }
 }
