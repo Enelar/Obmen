@@ -1,7 +1,4 @@
-<%
-debugger;
-%>
-<div class='ui small modal talk'>
+<div class='ui long scrolling modal talk'>
   <div class='header'>
     Обмен
   </div>
@@ -11,6 +8,7 @@ debugger;
     </div>
     <div class="description">
       Предлагаю обменять на одну из вещей:
+      <div class='offer'>
 <%
 for (var k in this.offer)
 {
@@ -23,7 +21,14 @@ for (var k in this.offer)
 <%
 }
 %>
-      <div class=''>
+      </div>
+    </div>
+    <div class="description">
+      <div class='messages'>
+        <div class='old'>
+          <%= this.DeferRender(['talk/OnAdv', this.tid]) %>
+        </div>
+        <div class='new'></div>
       </div>
     </div>
   </div>
@@ -46,6 +51,16 @@ this.first(function()
     ({
       onApprove: function()
       {
+        var input = __context.first().find('input');
+        var message = input.val();
+        input.val('');
+
+        phoxy.ApiRequest(['talk/Send', __context.tid, message], function()
+        {
+          var render_task = phoxy.DeferRender(['talk/OnAdv', __context.tid]);
+          __context.first().find('.messages.old').html(render_task);        
+        });
+
         return false;
       },
       onHidden: function()
@@ -64,5 +79,9 @@ this.first(function()
       send.removeClass('active');
     }, 1000);
   })
+
+  for ($i = 0; $i < 2000; $i+= 200)
+    phoxy.Defer(function() {__context.first().modal('refresh')}, $i);
+
 })
 %>

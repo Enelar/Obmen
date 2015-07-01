@@ -75,6 +75,10 @@ body .talk.modal > .actions {
   vertical-align: top;
 }
 
+.talk.modal .offer .image {
+  display: inline-block;
+}
+
 .offer.modal .my.items .image.selected {
   box-shadow: 0px 0px 1px 2px rgb(0, 90, 255);
 }

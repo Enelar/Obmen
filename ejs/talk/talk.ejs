@@ -1,0 +1,20 @@
+<%
+var authors = {};
+
+function GetAuthor(cb, id)
+{
+  if (typeof authors[id] !== 'undefined')
+    return authors[id];
+  phoxy.ApiRequest(['cp/profile/info', id], function(r)
+  {
+    authors[id] = r.data;
+    cb(r.data);
+  });
+}
+
+debugger;
+%>
+
+<div class="ui comments">
+
+</div>

@@ -14,7 +14,20 @@ class talk extends api
 
   protected function OnAdv($id)
   {
-    
+    return 
+    [
+      "design" => "talk/talk",
+      "data" =>
+      [
+        "messages" => db::Query("SELECT * FROM public.messages WHERE tid=$1 ORDER BY id ASC", [$id], true),
+      ]
+    ];
+  }
+
+  protected function Send($id, $message)
+  {
+    return db::Query("INSERT INTO public.messages(tid, uid, message) VALUES ($1, $2, $3)",
+      [$id, $this('api', 'auth')->uid(), $message], true);
   }
 
   private function info($id)
