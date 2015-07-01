@@ -3,7 +3,9 @@
     <img src="<%@ this.author.avatar[0] %>">
   </a>
   <div class="content">
-    <a class="author"><%@ this.author.name[0] %> <%@ this.author.name[1] %></a>
+    <a class="author" href="cp/profile(<%@ this.author.uid %>)">
+      <%@ this.author.name[0] %> <%@ this.author.name[1] %>
+    </a>
 <%
 if (typeof this.messages === 'undefined')
   this.messages = [this.message];
