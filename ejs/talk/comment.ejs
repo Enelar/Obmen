@@ -1,9 +1,9 @@
 <div class="comment">
   <a class="avatar">
-    <img src="<%@ this.author.img[0] %>">
+    <img src="<%@ this.author.avatar[0] %>">
   </a>
   <div class="content">
-    <a class="author"><%@ this.author.name[0] %> <%@ this.author.name[0] %></a>
+    <a class="author"><%@ this.author.name[0] %> <%@ this.author.name[1] %></a>
 <%
 if (typeof this.messages === 'undefined')
   this.messages = [this.message];

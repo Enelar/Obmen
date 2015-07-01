@@ -23,15 +23,13 @@ for (var k in this.offer)
 %>
       </div>
     </div>
-    <div class="description">
-      <div class='messages'>
-        <div class='old'>
-          <%= this.DeferRender(['talk/OnAdv', this.tid]) %>
-        </div>
-        <div class='new'></div>
-      </div>
-    </div>
   </div>
+    <div class='messages'>
+      <div class='old'>
+        <%= this.DeferRender(['talk/OnAdv', this.tid]) %>
+      </div>
+      <div class='new'></div>
+    </div>
   <div class='actions'>
       <div class='ui fluid action input'>
         <input>
@@ -58,7 +56,7 @@ this.first(function()
         phoxy.ApiRequest(['talk/Send', __context.tid, message], function()
         {
           var render_task = phoxy.DeferRender(['talk/OnAdv', __context.tid]);
-          __context.first().find('.messages.old').html(render_task);        
+          __context.first().find('.messages .old').html(render_task);        
         });
 
         return false;

@@ -34,14 +34,14 @@ class profile extends api
     return db::Query("SELECT * FROM public.adv WHERE owner=$1 ORDER BY id DESC", [$uid]);
   }
 
-  protected function info($id = null)
+  protected function info($uid = null)
   {
     if (is_null($uid))
       $uid = $this('api', 'auth')->uid();
 
     return
     [
-      "data" => db::Query("SELECT * FROM user.info WHERE uid=$1", [$id], true),
+      "data" => db::Query("SELECT * FROM users.info WHERE uid=$1", [$uid], true),
     ]; 
   }
 }

@@ -26,7 +26,7 @@ class talk extends api
 
   protected function Send($id, $message)
   {
-    return db::Query("INSERT INTO public.messages(tid, uid, message) VALUES ($1, $2, $3)",
+    return db::Query("INSERT INTO public.messages(tid, uid, \"text\") VALUES ($1, $2, $3)",
       [$id, $this('api', 'auth')->uid(), $message], true);
   }
 

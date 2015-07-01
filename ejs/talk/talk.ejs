@@ -10,9 +10,61 @@ function GetAuthor(cb, id)
     authors[id] = r.data;
     cb(r.data);
   });
+  return null;
 }
 
-debugger;
+function Draw()
+{
+  var uid = accumulate[0].uid;
+  var author = GetAuthor(Draw, uid);
+  if (author === null)
+    return; // wait to determine before continue
+
+  var task = 
+    phoxy.DeferRender('talk/comment', 
+      {
+        author: authors[uid],
+        messages: accumulate
+      });
+
+  target.append(task);
+
+  accumulate = [];
+  cur_author = undefined;
+  Next();
+}
+
+var cur_author;
+var accumulate = [];
+var i = 0;
+
+function Next()
+{
+  if (i >= __context.messages.length)
+  {
+    if (accumulate.length)
+      Draw(accumulate);
+    return;
+  }
+
+  var v = __context.messages[i];
+
+  if (typeof cur_author === 'undefined')
+    cur_author = v.uid;
+
+  if (cur_author !== v.uid)
+    return Draw(accumulate);
+
+  accumulate.push(v);
+  return Next(++i);
+}
+
+var target;
+this.first(function()
+{
+  target = this.first();
+  Next();
+});
 %>
 
 <div class="ui comments">
