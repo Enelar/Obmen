@@ -8,6 +8,10 @@ function SQLLoad($file)
   pg_send_query(db::RawConnection(), $sql);
   if (($error = pg_last_error()) !== '')
     die("Failure at loading {{$file}} with {{$error}}");
+
+  while (pg_connection_busy())
+    sleep(1);
+
   while (pg_get_result() !== false)
     if (($error = pg_last_error()) !== '')
       die("Failure at loading {{$file}} with {{$error}}");
