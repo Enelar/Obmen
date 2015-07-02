@@ -1,5 +1,16 @@
 @import url("send.css");
 
+body #canvas > .home {
+  background-image: url('img/home.jpg');
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-size: 100% auto;
+}
+
 .page.hat .descriptor .image {
   display: inline-block;
 }
@@ -99,7 +110,6 @@ body .talk.modal > .actions {
 
 
 .ui.container {
-  position: relative;
   margin: 0 auto;
   color: #898989;
   padding-right: 20px;
