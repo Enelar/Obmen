@@ -53,6 +53,8 @@ class upload extends api
     $fileloc = $this->base_prefix.$name.".".$ext;
 
     $save_res = $this->SaveTo($gd, $ext, $fileloc);
+    var_dump($save_res);
+    phoxy_protected_assert(file_exists($save_res), "Target file didnt exsist. Save failed");
     $res = $tran->Finish($save_res);
     @imagedestroy($gd);
 
@@ -95,9 +97,9 @@ class upload extends api
   private function CreateGD( $ext, $filename )
   {
     if ($ext == 'jpg')
-      return @imagecreatefromjpeg($filename);
+      return imagecreatefromjpeg($filename);
     if ($ext == 'png')
-      return @imagecreatefrompng($filename);
+      return imagecreatefrompng($filename);
     return false;        
   }
 
