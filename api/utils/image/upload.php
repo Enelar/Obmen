@@ -53,8 +53,7 @@ class upload extends api
     $fileloc = $this->base_prefix.$name.".".$ext;
 
     $save_res = $this->SaveTo($gd, $ext, $fileloc);
-    var_dump($save_res);
-    phoxy_protected_assert(file_exists($save_res), "Target file didnt exsist. Save failed");
+    
     $res = $tran->Finish($save_res);
     @imagedestroy($gd);
 
@@ -106,11 +105,15 @@ class upload extends api
   private function SaveTo( $gd, $ext, $filename )
   {
     $file = $_SERVER['DOCUMENT_ROOT'].$filename;
+    $res = false;
+
     if ($ext == 'jpg')
-      return imagejpeg($gd, $file);
+      $res = imagejpeg($gd, $file);
     if ($ext == 'png')
-      return imagepng($gd, $file);
-    return false;
+      $res = imagepng($gd, $file);
+
+    phoxy_protected_assert(file_exists($file), "Target file didnt exsist. Save failed");
+    return $res;
   }
 
   private function AllocImageName( $ext )
