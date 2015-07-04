@@ -157,6 +157,80 @@ CREATE VIEW item_category AS
 
 ALTER TABLE item_category OWNER TO postgres;
 
+--
+-- Name: messages; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE messages (
+    mid bigint NOT NULL,
+    tid integer NOT NULL,
+    uid integer NOT NULL,
+    text character varying(255) NOT NULL,
+    snap timestamp(6) with time zone DEFAULT now()
+);
+
+
+ALTER TABLE messages OWNER TO postgres;
+
+--
+-- Name: messages_mid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE messages_mid_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE messages_mid_seq OWNER TO postgres;
+
+--
+-- Name: messages_mid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE messages_mid_seq OWNED BY messages.mid;
+
+
+--
+-- Name: talks; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE talks (
+    tid bigint NOT NULL,
+    adv integer NOT NULL,
+    "from" integer NOT NULL,
+    "to" integer NOT NULL,
+    offer integer[] NOT NULL,
+    snap timestamp(6) with time zone DEFAULT now() NOT NULL,
+    result smallint
+);
+
+
+ALTER TABLE talks OWNER TO postgres;
+
+--
+-- Name: talks_tid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE talks_tid_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE talks_tid_seq OWNER TO postgres;
+
+--
+-- Name: talks_tid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE talks_tid_seq OWNED BY talks.tid;
+
+
 SET search_path = users, pg_catalog;
 
 --
@@ -288,6 +362,20 @@ SET search_path = public, pg_catalog;
 ALTER TABLE ONLY adv ALTER COLUMN id SET DEFAULT nextval('adv_id_seq'::regclass);
 
 
+--
+-- Name: mid; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY messages ALTER COLUMN mid SET DEFAULT nextval('messages_mid_seq'::regclass);
+
+
+--
+-- Name: tid; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY talks ALTER COLUMN tid SET DEFAULT nextval('talks_tid_seq'::regclass);
+
+
 SET search_path = users, pg_catalog;
 
 --
@@ -329,6 +417,22 @@ ALTER TABLE ONLY adv
 
 ALTER TABLE ONLY categories
     ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: messages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY messages
+    ADD CONSTRAINT messages_pkey PRIMARY KEY (mid);
+
+
+--
+-- Name: talks_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY talks
+    ADD CONSTRAINT talks_pkey PRIMARY KEY (tid);
 
 
 SET search_path = users, pg_catalog;
@@ -374,6 +478,46 @@ SET search_path = public, pg_catalog;
 
 ALTER TABLE ONLY adv
     ADD CONSTRAINT adv_owner_fkey FOREIGN KEY (owner) REFERENCES users.info(uid) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: messages_tid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY messages
+    ADD CONSTRAINT messages_tid_fkey FOREIGN KEY (tid) REFERENCES talks(tid) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: messages_uid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY messages
+    ADD CONSTRAINT messages_uid_fkey FOREIGN KEY (uid) REFERENCES users.info(uid) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: talks_adv_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY talks
+    ADD CONSTRAINT talks_adv_fkey FOREIGN KEY (adv) REFERENCES adv(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: talks_from_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY talks
+    ADD CONSTRAINT talks_from_fkey FOREIGN KEY ("from") REFERENCES users.info(uid) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: talks_to_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY talks
+    ADD CONSTRAINT talks_to_fkey FOREIGN KEY ("to") REFERENCES users.info(uid) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 SET search_path = users, pg_catalog;
