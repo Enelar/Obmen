@@ -1,0 +1,47 @@
+<%
+this.DeferCascade(function()
+{
+  var popup = this.first().next();
+
+  this.first()
+    .popup({
+      inline   : true,
+      position : 'bottom left',
+    })
+    .hover(function()
+    {
+      debugger;
+    }, function()
+    {
+
+    })
+})
+%>
+<div class='ui right labeled icon button'>
+  Категория
+  <i class='filter icon'></i>
+</div>
+<div class="ui flowing popup transition">
+  <%= this.DeferRender('utils/stack_categories', this) %>
+</div>
+<% return %>
+
+
+<div class='ui search selection dropdown'>
+  <div class='text'>Любая категория</div>
+  <i class='dropdown icon'></i>
+  <div class='menu'>
+<%
+for (var k in this.categories)
+{
+  var v = this.categories[k];
+%>
+  <div class='item' data-id="<%@ v.tree %>"><%@ v.title %></div>
+<%
+}
+%>
+    <div class='header'>Большая категория</div>
+    <div class='item'>Малая категория</div>
+    <div class='item'>Малая категория</div>
+  </div>
+</div>

@@ -135,7 +135,8 @@ CREATE TABLE categories (
     id smallint NOT NULL,
     parent smallint NOT NULL,
     title character varying NOT NULL,
-    tree ltree
+    tree ltree,
+    hidden boolean DEFAULT false NOT NULL
 );
 
 

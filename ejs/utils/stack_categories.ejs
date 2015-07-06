@@ -1,0 +1,62 @@
+<%
+var divide_by = 6;
+var i = 0;
+
+function BeginTable()
+{
+  %><div class="ui six column relaxed divided grid"><%
+}
+
+function EndTable()
+{
+  %></div><%
+}
+
+function BeginColumn(v)
+{
+%>
+  <div class="column">
+    <h4 class="ui header"><%@ v.title %></h4>
+    <div class="ui link list">
+<%
+}
+
+function EndColumn()
+{
+%>
+    </div>
+  </div>
+<%
+}
+
+function Row(v)
+{
+  %><a class="item"><%@ v.title %></a><%
+}
+
+BeginTable();
+for (var k in this.categories)
+{
+  var v = this.categories[k];
+  if (v.nlevel > 2)
+  {
+    Row(v);
+    continue;
+  }
+
+  if (i != 0)
+    EndColumn();
+
+  i++;
+  if ((i % (1+divide_by)) == 0)
+  {
+    EndTable();
+    BeginTable();
+  }
+
+  BeginColumn(v);
+}
+
+EndTable();
+
+%>

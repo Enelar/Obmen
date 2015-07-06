@@ -12,17 +12,7 @@
   </div>
 
   <div class='ui menu'>
-    <div class='item'>
-      <div class='ui search selection dropdown'>
-        <div class='text'>Любая категория</div>
-        <i class='dropdown icon'></i>
-        <div class='menu'>
-          <div class='header'>Большая категория</div>
-          <div class='item'>Малая категория</div>
-          <div class='item'>Малая категория</div>
-        </div>
-      </div>
-    </div>
+    <%= this.DeferRender('adv/categories') %>
 
     <div class='item'>
       <div class='ui icon input'>
@@ -40,10 +30,3 @@
     </div>
   </div>
 </div>
-
-<%
-this.first(function()
-{
-  this.find('.dropdown').dropdown();
-})
-%>
