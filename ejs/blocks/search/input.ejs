@@ -6,6 +6,19 @@
 <%
 this.first(function()
 {
-//  this.find('.search input').
+  var input = this.find('input');
+
+  input.focus(function()
+  {
+    if (typeof window.search === 'undefined')
+      phoxy.ApiRequest('adv/search/Prepare');
+  })
+
+  input.keyup(function()
+  {
+    if (typeof window.search === 'undefined')
+      return;
+    window.search($(this).val());
+  })
 })
 %>
