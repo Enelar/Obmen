@@ -2,11 +2,17 @@
 this.DeferCascade(function()
 {
   var popup = this.first().next();
-  debugger;
+
   this.first()
     .popup({
       inline   : true,
+      hoverable: true,
       position : 'bottom left',
+      on: 'click',
+    })
+    .click(function()
+    {
+      popup.addClass('visible');
     })
 })
 %>
@@ -16,25 +22,4 @@ this.DeferCascade(function()
 </div>
 <div class="ui flowing popup transition">
   <%= this.DeferRender('utils/stack_categories', this) %>
-</div>
-<% return %>
-
-
-<div class='ui search selection dropdown'>
-  <div class='text'>Любая категория</div>
-  <i class='dropdown icon'></i>
-  <div class='menu'>
-<%
-for (var k in this.categories)
-{
-  var v = this.categories[k];
-%>
-  <div class='item' data-id="<%@ v.tree %>"><%@ v.title %></div>
-<%
-}
-%>
-    <div class='header'>Большая категория</div>
-    <div class='item'>Малая категория</div>
-    <div class='item'>Малая категория</div>
-  </div>
 </div>

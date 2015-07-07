@@ -147,13 +147,16 @@ ALTER TABLE categories OWNER TO postgres;
 --
 
 CREATE VIEW item_category AS
- SELECT categories.id,
-    categories.parent,
-    categories.title,
-    categories.tree
-   FROM categories
-  WHERE ((subltree(categories.tree, 0, 1) <> '2'::ltree) AND (nlevel(categories.tree) = 2))
-  ORDER BY categories.tree, categories.title;
+ SELECT b.id,
+    b.parent,
+    b.title,
+    b.tree,
+    ( SELECT count(*) AS count
+           FROM categories a
+          WHERE ((a.parent = b.id) AND (a.hidden = false))) AS count
+   FROM categories b
+  WHERE (((subltree(b.tree, 0, 1) <> '2'::ltree) AND (nlevel(b.tree) = 2)) AND (b.hidden = false))
+  ORDER BY b.tree, b.title;
 
 
 ALTER TABLE item_category OWNER TO postgres;

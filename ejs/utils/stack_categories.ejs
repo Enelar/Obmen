@@ -1,10 +1,10 @@
 <%
-var divide_by = 6;
+var divide_by = 5;
 var i = 0;
 
 function BeginTable()
 {
-  %><div class="ui six column relaxed divided grid"><%
+  %><div class="ui five column relaxed divided grid"><%
 }
 
 function EndTable()
@@ -31,13 +31,20 @@ function EndColumn()
 
 function Row(v)
 {
-  %><a class="item"><%@ v.title %></a><%
+  %>
+      <a class="item" href='/adv/categories/Show(<%@ v.id %>)'>
+        <%@ v.title %>
+      </a>
+  <%
 }
 
 BeginTable();
 for (var k in this.categories)
 {
   var v = this.categories[k];
+  if (v.nlevel < 2)
+    continue;
+
   if (v.nlevel > 2)
   {
     Row(v);
