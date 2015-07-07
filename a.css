@@ -1,4 +1,5 @@
 @import url("send.css");
+@import url("search.css");
 
 body #canvas > .home {
   background-image: url('img/home.jpg');
