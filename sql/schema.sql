@@ -95,7 +95,7 @@ SET default_with_oids = false;
 CREATE TABLE adv (
     id integer NOT NULL,
     owner integer NOT NULL,
-    category character varying(255),
+    category integer,
     name character varying(255),
     descr text,
     images character varying(255)[],
@@ -475,6 +475,14 @@ CREATE UNIQUE INDEX images_name_idx ON images USING btree (name);
 
 
 SET search_path = public, pg_catalog;
+
+--
+-- Name: adv_category_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY adv
+    ADD CONSTRAINT adv_category_fkey FOREIGN KEY (category) REFERENCES categories(id) ON UPDATE SET NULL ON DELETE SET NULL;
+
 
 --
 -- Name: adv_owner_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres

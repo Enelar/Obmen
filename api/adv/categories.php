@@ -19,7 +19,8 @@ class categories extends api
         $hidden = $row->hidden == 't';
       if ($hidden)
         continue;
-      $ret[] = $row;
+      if ($row->hidden != 't')
+        $ret[] = $row;
     }
         
   	return
@@ -30,5 +31,27 @@ class categories extends api
 	  	  "categories" => $ret,
   	  ],
   	];
-   }
+  }
+
+  protected function Show($id)
+  {
+    $res = db::Query("WITH cats AS
+(
+    SELECT id
+      FROM public.categories
+      WHERE
+        tree <@
+          (SELECT tree FROM public.categories WHERE id=$1)
+) SELECT adv.* FROM public.adv, cats WHERE category=cats.id ORDER BY category DESC, adv.id DESC",
+        [$id], true);
+
+    return
+    [
+      "design" => "blocks/adv/list",
+      "data" =>
+      [
+        "adv" => $res,
+      ],
+    ];
+  }
 }

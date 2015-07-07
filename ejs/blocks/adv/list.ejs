@@ -1,0 +1,11 @@
+<% debugger %>
+
+<%
+for (var k in this.adv)
+{
+  var v = this.adv[k];
+%>
+  <%= this.DeferRender('blocks/adv', v) %>
+<%
+}
+%>
