@@ -16,9 +16,11 @@ this.DeferCascade(function()
     })
 })
 %>
-<div class='ui right labeled icon button'>
-  Категория
-  <i class='filter icon'></i>
+<div class='item'>
+  <div class='ui right labeled icon button'>
+    Категория
+    <i class='filter icon'></i>
+  </div>
 </div>
 <div class="ui flowing popup transition">
   <%= this.DeferRender('utils/stack_categories', this) %>
