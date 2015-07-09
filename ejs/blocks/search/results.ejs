@@ -1,1 +1,38 @@
-TODO: Results
+<div class='results'>
+<%
+debugger;
+if (this.rows.length === 0)
+{
+%>
+<h2>Ничего не найдено, простите</h2>
+<%
+}
+else
+  for (var k in this.rows)
+  {
+    var v = this.rows[k];
+%>
+  <h2>Найдено <%@ this.rows.length %> объявлений</h2>
+  <div class='ui list'>
+    <div class='item'>
+      <div class='ui image'>
+<%
+  if (!v.images)
+    v.images = ["/img/placeholder.png"];
+%>
+        <img src='<%@ v.images[0] %>' />
+      </div>
+      <div class='content'>
+        <a class='header' src='cp/adv(<%@ v.id %>)'>
+          <%@ v.name %>
+        </a>
+        <div class='description'>
+          <%@ v.descr %>
+        </div>
+      </div>
+    </div>
+  </div>
+<%
+  }
+%>
+</div>

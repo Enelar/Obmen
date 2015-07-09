@@ -2,6 +2,7 @@ var search = function(query)
 {
   phoxy.Log(9, "Search " + query);
 
+  search.RequireCanvas();
   search.Toggle(query.length !== 0);
   phoxy.ApiRequest(["adv/search", query], function(r)
   {
@@ -17,8 +18,6 @@ search.Prepare = function()
     return; // already done
   search.prepared = "in progress";
 
-  $('#canvas').before("<div id='search'></div>");
-
   search.prepared = true;
   phoxy.Log(3, "Search subsytem prepared");
 }
@@ -29,6 +28,12 @@ search.Toggle = function(state)
     return search.Activate();
   if (!state && search.Active())
     return search.DeActivate();
+}
+
+search.RequireCanvas = function()
+{
+  if (!$("#search").size())
+    $('#canvas').prepend("<div id='search'></div>");
 }
 
 search.Active = function()

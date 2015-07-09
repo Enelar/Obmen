@@ -47,11 +47,23 @@ class categories extends api
 
     return
     [
-      "design" => "blocks/adv/list",
+      "design" => "blocks/adv/category",
       "data" =>
       [
         "adv" => $res,
+        "crumbs" => $this->Path($id),
       ],
     ];
+  }
+
+  private function Path($id)
+  {
+    $res = db::Query("SELECT *
+      FROM public.categories
+      WHERE
+        tree @>
+          (SELECT tree FROM public.categories WHERE id=$1)", [$id]);
+    
+    return $res;
   }
 }

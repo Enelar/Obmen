@@ -1,0 +1,21 @@
+<div class='ui huge breadcrumb'>
+<%
+debugger;
+var last = this.crumbs.splice(-1, 1);
+for (var k in this.crumbs)
+{
+  var v = this.crumbs[k];
+%>
+  <a class='section' href='adv/categories/Show(<%@ v.id %>)'><%@ v.title %></a>
+  <i class="right angle icon divider"></i>
+<%
+}
+if (last.length == 1)
+{
+%>
+  <div class='active section'><%@ last[0].title %></div>
+<%
+}
+%>
+
+</div>

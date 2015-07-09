@@ -1,11 +1,16 @@
-<% debugger %>
-
 <%
 for (var k in this.adv)
 {
   var v = this.adv[k];
 %>
   <%= this.DeferRender('blocks/adv', v) %>
+<%
+}
+
+if (this.adv.length == 0)
+{
+%>
+  <h2>Больше ничего не найдено</h2>
 <%
 }
 %>

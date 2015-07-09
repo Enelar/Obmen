@@ -18,6 +18,7 @@ class search extends api
     $subqueries = explode(" ", $search_string);
 
     $results = db::Query("SELECT * FROM public.adv WHERE title IN $1", [$subqueries]);
+    $results = db::Query("SELECT * FROM public.adv");
 
     unset($this->addons['result']);
     return
