@@ -1,6 +1,5 @@
 <div class='results'>
 <%
-debugger;
 if (this.rows.length === 0)
 {
 %>
@@ -8,11 +7,14 @@ if (this.rows.length === 0)
 <%
 }
 else
+{
+%>
+  <h2>Найдено <%@ this.rows.length %> объявлений</h2>
+<%
   for (var k in this.rows)
   {
     var v = this.rows[k];
 %>
-  <h2>Найдено <%@ this.rows.length %> объявлений</h2>
   <div class='ui list'>
     <div class='item'>
       <div class='ui small image'>
@@ -23,7 +25,7 @@ else
         <img src='<%@ v.images[0] %>' />
       </div>
       <div class='content'>
-        <a class='header' src='cp/adv(<%@ v.id %>)'>
+        <a class='header' href='cp/adv(<%@ v.id %>)'>
           <%@ v.name %>
         </a>
         <div class='description'>
@@ -34,5 +36,6 @@ else
   </div>
 <%
   }
+}
 %>
 </div>
