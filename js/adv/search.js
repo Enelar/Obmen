@@ -33,7 +33,8 @@ search.Toggle = function(state)
 search.RequireCanvas = function()
 {
   if (!$("#search").size())
-    $('#canvas').prepend("<div id='search'></div>");
+    $('#root').prepend("<div id='search'></div>");
+  return true;
 }
 
 search.Active = function()

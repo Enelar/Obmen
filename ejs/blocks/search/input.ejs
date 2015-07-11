@@ -9,10 +9,23 @@ this.first(function()
   var input = this.find('input');
 
   input.focus(function()
-  {
-    if (typeof window.search === 'undefined')
-      phoxy.ApiRequest('adv/search/Prepare');
-  })
+    {
+      if (typeof window.search !== 'undefined')
+        window.search.Activate();
+      else
+        phoxy.ApiRequest('adv/search/Prepare');
+
+    })
+    .focusout(function()
+    {
+      phoxy.Defer(function()
+      {
+        if (input.is(":focus"))
+          return;
+        if (typeof window.search !== 'undefined')
+          window.search.DeActivate();
+      }, 300);
+    })
 
   input.keyup(function()
   {
