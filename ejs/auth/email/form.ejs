@@ -1,0 +1,27 @@
+<div class="ui shape email form">
+  <div class="sides">
+    <div class="side active">
+      <div class='ui fluid input'>
+        <input>
+      </div>
+    </div>
+    <div class="side">
+    2
+    </div>
+    <div class="side">
+    3
+    </div>
+  </div>
+</div>
+
+<%
+this.first(function()
+{
+  var me = this;
+
+  me.find('input').one('focus', function()
+  {
+    me.append(phoxy.DeferRender('auth/email/form.logic', {form: me}));
+  })
+})
+%>

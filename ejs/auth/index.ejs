@@ -3,9 +3,13 @@
 
     <div class="center">
       <h3>Войдите для продолжения</h3>
-      <p>(нажмите на иконку или почту)</p>
+      <p>(нажмите на иконку)</p>
       <div class='buttons'>
         <a class='hipster' href="/auth/vkcom"><i class="vk icon bait"></i></a>
+      </div>
+      <div class='email area'>
+        <p>(или введите почту)</p>
+        <% this.DeferRender('auth/email/form', {}) %>
       </div>
     </div>
   </div>
