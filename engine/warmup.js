@@ -80,14 +80,14 @@ var warmup_obj =
   OnInitialClientCodeComplete: function()
   {
     phoxy.Log(3, "Initial handlers complete");
+
+    $('.removeafterload').remove();
+    $('body').trigger('initialrender');
+
     phoxy.MenuCall(location.pathname.substr(1) + location.search, function()
     {
-      phoxy.ApiRequest('main/Head', function()
-      {
-        $('.removeafterload').remove();
-        $('body').trigger('initialrender');
-        phoxy.Log(3, "First page rendered");
-      })
+      phoxy.Log(3, "First page rendered");
+      phoxy.ApiRequest('main/Head');
     });
   }
 };
