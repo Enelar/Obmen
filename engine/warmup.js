@@ -9,6 +9,7 @@ var warmup_obj =
     
     phoxy._EarlyStage.sync_require.push("//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js");
     phoxy._EarlyStage.EntryPoint();
+    phoxy.state.early.optional.lazy = 4;
   },
   OnBeforeCompile: function()
   {
@@ -120,3 +121,22 @@ var require_not_loading = setTimeout(function()
   js.src = "//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.15/require.min.js";
   d.head.appendChild(js);
 }, 1000);
+
+// Loading animation
+(function()
+{
+  if (typeof phoxy._EarlyStage == 'undefined')
+    return setTimeout(arguments.callee, 10);
+
+  var percents = phoxy._EarlyStage.LoadingPercentage();
+  var element = document.getElementById('percent');
+
+  if (element == null)
+    return;
+  element.style.width = percents + "px";
+  element.style.opacity = percents / 100;
+  setTimeout(arguments.callee, 50);
+
+  if (percents == 100)
+    $('.removeafterload').css('opacity', 0);
+})();

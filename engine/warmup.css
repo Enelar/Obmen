@@ -69,3 +69,14 @@
     -webkit-transform: rotate(-360deg);
   }
 }
+
+.percentage {
+  background-color: black;
+  margin-left: -20px;
+  margin-top: -10px;
+  height: 1px;
+
+  transition: width 0.5s, opacity 0.1s;
+  width: 0px;
+  opacity: 0;
+}
