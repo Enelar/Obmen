@@ -1,4 +1,87 @@
+<div class="side message">
+  Введите пароль
+</div>
+
+<div class="side">
+  <div class='ui fluid password input'>
+    <input tabindex='-1' placeholder='Пароль'>
+  </div>
+</div>
+
+<div class="side message">
+  Подождите секунду
+</div>
+
+<div class="side message">
+  Здесь будет продолжение
+</div>
+
+
 <%
+var form = this.form;
+
+this.Defer(function()
+{  
+  form.shape();
+})
+
+
+form.find('input').keydown(function(event)
+{
+  var keycode = (event.keyCode ? event.keyCode : event.which);
+  if (keycode != 13)
+    return;
+
+  $( this ).off( event );
+  NextStage();
+})  
+
+function NextStage()
+{
+  stage++;
+
+  phoxy.Log(6, "Login stage", stage);
+  if (typeof stages[stage] == 'function')
+    stages[stage]();
+
+  form.shape('flip down');
+}
+
+var stages = [];
 var stage = 0;
-// TODO: Login through email logic here
+
+stages[1] = function()
+{
+  phoxy.Defer(NextStage, 1500);  
+}
+
+stages[2] = function()
+{
+  var input = form.find('.password input');
+  input.keydown(function(event)
+  {
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if (keycode != 13)
+      return;
+
+    $( this ).off( event );
+    NextStage();
+  }) 
+
+  phoxy.Defer(function()
+  {
+    input.focus();
+  }, 500);
+}
+
+stages[3] = function()
+{
+  var email = form.find('.email input').val();
+  var pass = form.find('.password input').val();
+
+  phoxy.ApiRequest(['auth/email', email, pass], function()
+  {
+    NextStage();
+  })
+}
 %>

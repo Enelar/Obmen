@@ -48,7 +48,6 @@ body #canvas > .home {
 .auth.dimmer .email.form .side {
   height: 20px;
   width: 400px;
-  background-color: red;
 }
 
 .auth.dimmer .email.form .side input {
