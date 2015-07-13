@@ -1153,4 +1153,16 @@ INSERT INTO "public"."categories" ("id", "parent", "title", "tree") VALUES
 (1249, 776, 'Рейки', '1.22.776.1249'),
 (1250, 22, 'Кисти и валики', '1.22.1250');
 
-UPDATE "public"."categories" SET hidden=true WHERE id IN [8, 9, 19, 23, 1147];
+UPDATE "public"."categories" SET hidden=true WHERE id IN (8, 9, 19, 23, 1147);
+
+-- AutoIndex tree (max depth 10)
+UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent)::ltree;
+UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent)::ltree;
+UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent)::ltree;
+UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent)::ltree;
+UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent)::ltree;
+UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent)::ltree;
+UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent)::ltree;
+UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent)::ltree;
+UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent)::ltree;
+UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent)::ltree;
