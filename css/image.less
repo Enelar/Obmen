@@ -1,0 +1,45 @@
+.image.upload.index .files.to.upload {
+  display: inline;
+  padding: 0;
+}
+
+.image.upload.index .files.to.upload .image {
+  vertical-align: top;
+  height: 150px;
+  overflow: hidden;
+}
+
+.image.upload.placeholder {
+  border-style: dashed;
+  border-width: 3px;
+  border-color: rgb(200, 187, 187);
+  color: rgb(200, 187, 187);
+  width: 150px;
+  height: 150px;
+  position: relative;
+  display: inline-block;
+}
+
+.image.upload.placeholder:hover {
+  border-color: black;
+  color: black;
+}
+
+.image.upload.placeholder > div {
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.image.upload.placeholder .not.active.loader:before,
+.image.upload.placeholder .not.active.loader:after {
+  border-color: transparent transparent transparent;
+}
+
+.image.upload.placeholder .icon.plus {
+  color: inherit;
+  font-size: 2em;
+  margin: 2px 0 0 -1px;
+}

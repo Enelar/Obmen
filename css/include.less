@@ -1,0 +1,15 @@
+.cutting_edge(@name, @code) {
+  -webkit-@{name}: @code;
+  -moz-@{name}: @code;
+  -ms-@{name}: @code;
+  -o-@{name}: @code;
+  @{name}: @code;
+}
+
+.vertical_gradient(@code) {
+  background: -moz-linear-gradient(top, @code); /* FF3.6+ */
+  background: -webkit-linear-gradient(top, @code); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, @code); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, @code); /* IE10+ */
+  background: linear-gradient(to bottom, @code); /* W3C */
+}
