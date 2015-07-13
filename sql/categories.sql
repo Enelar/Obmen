@@ -1156,7 +1156,7 @@ INSERT INTO "public"."categories" ("id", "parent", "title") VALUES
 UPDATE "public"."categories" SET hidden=true WHERE id IN (8, 9, 19, 23, 1147);
 
 -- AutoIndex tree (max depth 10)
-UPDATE categories as a SET tree='0'::ltree WHERE parent = 0;
+UPDATE categories as a SET tree=id::varchar::ltree WHERE parent = 0;
 UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent AND b.tree IS NOT NULL)::ltree WHERE a.parent != 0;
 UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent AND b.tree IS NOT NULL)::ltree WHERE a.parent != 0;
 UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent AND b.tree IS NOT NULL)::ltree WHERE a.parent != 0;
