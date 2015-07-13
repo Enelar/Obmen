@@ -1,5 +1,3 @@
-DirectoryIndex engine/load.html
-
 DirectorySlash Off
 RewriteEngine On
 
@@ -17,6 +15,8 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !^/ejs [NC]
 RewriteCond %{REQUEST_URI} !^/js [NC]
 RewriteRule ^(.*)$ engine/coldstart.php?url=$1 [END,PT,QSA]
+
+RewriteRule ^$ engine/coldstart.php [END,PT,QSA]
 
 RedirectMatch 403 /\.git
 RedirectMatch 403 /sql
