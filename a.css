@@ -26,7 +26,11 @@ body #canvas > .home {
 .page.hat .descriptor .title {
   display: inline-block;
   font-size: 5em;
-  vertical-align: top;
+  vertical-align: middle;
+}
+
+.page.hat .descriptor a {
+  color: inherit;
 }
 
 #root {
