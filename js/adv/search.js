@@ -4,10 +4,11 @@ var search = function(query)
 
   search.RequireCanvas();
   search.Toggle(query.length !== 0);
-  phoxy.ApiRequest(["adv/search", query], function(r)
-  {
-    phoxy.Log(9, "Results", r);
-  });
+  if (query.search > 0)
+    phoxy.ApiRequest(["adv/search", query], function(r)
+    {
+      phoxy.Log(9, "Results", r);
+    });
 }
 
 search.prepared = false;
