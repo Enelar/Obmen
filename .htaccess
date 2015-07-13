@@ -18,6 +18,8 @@ RewriteRule ^(.*)$ engine/coldstart.php?url=$1 [END,PT,QSA]
 
 RewriteRule ^$ engine/coldstart.php [END,PT,QSA]
 
+RewriteRule ^css$ css/compile.php [END,PT,QSA]
+
 RedirectMatch 403 /\.git
 RedirectMatch 403 /sql
 RedirectMatch 403 secret.yaml
