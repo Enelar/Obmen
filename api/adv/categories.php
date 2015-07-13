@@ -9,7 +9,7 @@ class categories extends api
 
   protected function GetAll()
   {
-  	$res = db::Query("SELECT *, nlevel(tree) FROM public.categories WHERE nlevel(tree) < 4 ORDER BY tree ASC LIMIT 200");
+    $res = db::Query("SELECT *, nlevel(tree) FROM public.categories WHERE nlevel(tree) < 4 ORDER BY tree ASC");
     $ret = [];
 
     $hidden = false;
