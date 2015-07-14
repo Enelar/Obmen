@@ -7,9 +7,12 @@ class categories extends api
     return $this->GetAll();
   }
 
-  protected function GetAll()
+  protected function GetAll($level=4)
   {
-    $res = db::Query("SELECT *, nlevel(tree) FROM public.categories WHERE nlevel(tree) < 4 ORDER BY tree ASC");
+    if ($level > 4)
+      $level = 4;
+
+    $res = db::Query("SELECT *, nlevel(tree) FROM public.categories WHERE nlevel(tree) < $1 ORDER BY tree ASC", [$level]);
     $ret = [];
 
     $hidden = false;
@@ -22,7 +25,7 @@ class categories extends api
       if ($row->hidden != 't')
         $ret[] = $row;
     }
-        
+
   	return
   	[
   	  "design" => "utils/categories",
@@ -63,7 +66,7 @@ class categories extends api
       WHERE
         tree @>
           (SELECT tree FROM public.categories WHERE id=$1)", [$id]);
-    
+
     return $res;
   }
 }
