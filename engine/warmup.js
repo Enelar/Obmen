@@ -87,7 +87,7 @@ var warmup_obj =
     phoxy.MenuCall(location.pathname.substr(1) + location.search, function()
     {
       phoxy.Log(3, "First page rendered");
-      phoxy.ApiRequest('main/Head');
+      phoxy.ApiRequest('main/Hat');
     });
   }
 };

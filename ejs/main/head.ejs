@@ -20,7 +20,7 @@ this.Defer(function()
     scripts.push($(this).attr('src'));
   });
   phoxy.Log(4, "Head require", scripts);
-  require(scripts, function() 
+  require(scripts, function()
   {
     phoxy.Log(3, "Head scripts loaded");
     __context.escape().CheckIsCompleted.call(__context);
@@ -31,4 +31,4 @@ this.Defer(function()
 })
 %>
 
-<div id='header'></div>
+<div id='hat'></div>

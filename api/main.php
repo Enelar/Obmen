@@ -19,13 +19,13 @@ class main extends api
     ];
   }
 
-  protected function Head()
+  protected function Hat()
   {
     unset($this->addons['result']);
     return
     [
-      'design' => 'main/header',
-      'result' => 'header',
+      'design' => 'main/hat',
+      'result' => 'hat',
     ];
   }
 }
