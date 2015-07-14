@@ -1153,7 +1153,7 @@ INSERT INTO "public"."categories" ("id", "parent", "title") VALUES
 (1249, 776, 'Рейки'),
 (1250, 22, 'Кисти и валики');
 
-UPDATE "public"."categories" SET hidden=true WHERE id IN 
+UPDATE "public"."categories" SET hidden=true WHERE id IN
 (
   8, 9, 18, 19,
   20, 21, 23, 129,
@@ -1173,18 +1173,11 @@ UPDATE "public"."categories" SET hidden=true WHERE id IN
   938, 942, 943, 944,
   994, 997, 998, 999,
   1000, 1001, 1006, 1010,
-  1012, 1147, 1250,
+  1012, 1147, 1250
 );
 
--- AutoIndex tree (max depth 10)
-UPDATE categories as a SET tree=id::varchar::ltree WHERE parent = 0;
-UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent AND b.tree IS NOT NULL)::ltree WHERE a.parent != 0;
-UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent AND b.tree IS NOT NULL)::ltree WHERE a.parent != 0;
-UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent AND b.tree IS NOT NULL)::ltree WHERE a.parent != 0;
-UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent AND b.tree IS NOT NULL)::ltree WHERE a.parent != 0;
-UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent AND b.tree IS NOT NULL)::ltree WHERE a.parent != 0;
-UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent AND b.tree IS NOT NULL)::ltree WHERE a.parent != 0;
-UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent AND b.tree IS NOT NULL)::ltree WHERE a.parent != 0;
-UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent AND b.tree IS NOT NULL)::ltree WHERE a.parent != 0;
-UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent AND b.tree IS NOT NULL)::ltree WHERE a.parent != 0;
-UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent AND b.tree IS NOT NULL)::ltree WHERE a.parent != 0;
+-- AutoIndex tree (max depth 4)
+UPDATE categories as a SET tree=id::varchar::ltree WHERE parent = 0 AND hidden = false;
+UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent AND b.tree IS NOT NULL)::ltree WHERE a.parent != 0 AND hidden = false;
+UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent AND b.tree IS NOT NULL)::ltree WHERE a.parent != 0 AND hidden = false;
+UPDATE categories as a SET tree=(SELECT CONCAT(b.tree,'.',a.id) FROM categories as b WHERE b.id=a.parent AND b.tree IS NOT NULL)::ltree WHERE a.parent != 0 AND hidden = false;
