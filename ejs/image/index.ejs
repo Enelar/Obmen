@@ -42,11 +42,11 @@ this.DeferCascade(function()
 
 function OnNewFileList(filelist)
 {
-  for (var k in filelist)
+  // Because javascript sucks.
+  // FileList HAS own property length. Zaebalo.
+  for (var i = 0; i < filelist.length; i++)
   {
-    if (!filelist.hasOwnProperty(k))
-      continue;
-    OnNewFile(filelist[k]);
+    OnNewFile(filelist[i]);
   }
 }
 
