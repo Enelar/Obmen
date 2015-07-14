@@ -1,15 +1,34 @@
 .cutting_edge(@name, @code) {
-  -webkit-@{name}: @code;
-  -moz-@{name}: @code;
-  -ms-@{name}: @code;
-  -o-@{name}: @code;
-  @{name}: @code;
+  @{name}:@code;
+  -o-@{name}:@code;
+  -ms-@{name}:@code;
+  -moz-@{name}:@code;
+  -webkit-@{name}:@code;
 }
 
-.vertical_gradient(@code) {
-  background: -moz-linear-gradient(top, @code); /* FF3.6+ */
-  background: -webkit-linear-gradient(top, @code); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, @code); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, @code); /* IE10+ */
-  background: linear-gradient(to bottom, @code); /* W3C */
+.cutting_edge_on(@on, @name, @code) {
+  @{on}: ~"@{name}@{code}";
+  @{on}: ~"-o-@{name}@{code}";
+  @{on}: ~"-ms-@{name}@{code}";
+  @{on}: ~"-moz-@{name}@{code}";
+  @{on}: ~"-webkit-@{name}@{code}";
+}
+
+.gradient(@on, @type, @code) {
+  .cutting_edge_on(@on, ~"@{type}-gradient", ~"(@{code})");
+}
+
+.gradient_linear(@on, @code) {
+  .gradient(@on, linear, @code);
+}
+
+.gradient_radial(@on, @code) {
+  .gradient(@on, radial, @code);
+}
+
+.google_color_gradient_linear(@rgb, @a1, @a2, @width) {
+  @return: 
+    ~"rgba(@{rgb},@{a1}) 0%,"
+    ~"rgba(@{rgb},"@a1 + (@a2 - @a1) * 0.5~")" @width*0.3 ~","
+    ~"rgba(@{rgb},@{a2}) @{width}";
 }

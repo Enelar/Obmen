@@ -5,4 +5,10 @@ include("../vendor/autoload.php");
 $less = new lessc;
 
 header("Content-Type: text/css");
-echo $less->compileFile('a.less');
+try
+{
+  echo $less->compileFile('a.less');
+} catch(Exception $e)
+{
+  echo $e->getMessage();
+}
