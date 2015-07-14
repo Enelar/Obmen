@@ -1,9 +1,10 @@
 <%
 this.DeferCascade(function()
 {
-  var popup = this.first().next();
+  var button = this.first();
+  var popup = button.next();
 
-  this.first()
+  button
     .popup({
       inline   : true,
       hoverable: true,
@@ -14,6 +15,11 @@ this.DeferCascade(function()
     {
       popup.addClass('visible');
     })
+
+  popup.find('a').click(function()
+  {
+    button.popup('hide');
+  })
 })
 %>
 <div class='item'>
