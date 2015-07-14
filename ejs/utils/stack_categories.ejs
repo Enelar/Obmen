@@ -17,7 +17,9 @@ function BeginColumn(v)
 {
 %>
   <div class="column">
-    <h4 class="ui header"><%@ v.title %></h4>
+    <a href='/adv/categories/Show(<%@ v.id %>)'>
+      <h4 class="ui header"><%@ v.title %></h4>
+    </a>
     <div class="ui link list">
 <%
 }

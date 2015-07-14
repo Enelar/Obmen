@@ -4,7 +4,7 @@ class categories extends api
 {
   protected function Reserve()
   {
-    return $this->GetAll();
+    return $this->GetAll(3);
   }
 
   protected function GetAll($level=4)
