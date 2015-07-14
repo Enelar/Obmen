@@ -14,8 +14,8 @@ class search extends api
     $reduce_complexivity = array_slice($array, 0, search::max_subqueries);
 
     $subqueries = implode("|", $reduce_complexivity);
- 
-    $results = db::Query("SELECT * FROM public.adv WHERE name ~~* $1 OR desrc ~~* $1", [$subqueries]);
+
+    $results = db::Query("SELECT * FROM public.adv WHERE name ~* $1 OR descr ~* $1", [$subqueries]);
 
     unset($this->addons['result']);
     return
