@@ -1,5 +1,6 @@
 <?php
-include ('vendor/autoload.php');
+require_once('vendor/autoload.php');
+
 
 define('PRODUCTION', isset($_SERVER["HEROKU_APP_DIR"]));
 
