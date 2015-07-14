@@ -1,3 +1,27 @@
 #root {
   padding-top: 30px;
 }
+
+/* Based on
+ * http://galengidman.com/2014/03/25/responsive-flexible-height-sticky-footers-in-css/
+ * http://stackoverflow.com/questions/4347133/css-sticky-footers-with-unknown-height
+ */
+
+html, body {
+  min-height: 100%;
+}
+
+.page.cake {
+  display: table;
+  width: 100%;
+  min-height: 90%;
+}
+
+.page.slice {
+  display: table-row;
+  height: 1px;
+}
+
+.delicious.page.slice {
+  height: auto;
+}
