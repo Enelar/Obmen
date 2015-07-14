@@ -31,7 +31,7 @@ if (images == null)
       </h3>
 
       <div class="sub header">
-        Обьявление #<%@ this.adv.id %> 
+        Обьявление #<%@ this.adv.id %>
         от <%= this.DeferRender('utils/snaptodate', {date: this.adv.snap}) %>
       </div>
 
@@ -44,7 +44,7 @@ if (images == null)
 
       <p><%@ this.adv.descr %></p>
 
-      <%= this.DeferRender('blocks/adv/start-talk', {id: this.adv.id }) %>
+      <%= this.DeferRender('blocks/adv/start-talk', {adv: this.adv }) %>
     </div>
   </div>
 </div>

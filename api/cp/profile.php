@@ -42,6 +42,6 @@ class profile extends api
     return
     [
       "data" => db::Query("SELECT * FROM users.info WHERE uid=$1", [$uid], true),
-    ]; 
+    ];
   }
 }

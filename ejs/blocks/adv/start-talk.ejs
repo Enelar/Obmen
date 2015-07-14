@@ -1,3 +1,9 @@
+<%
+if (this.adv.uid == window.uid())
+  return;
+// Cant exchange with yourself
+%>
+
 <div class="ui right floated primary button">
   Обменять
   <i class="right chevron icon"></i>
@@ -10,7 +16,7 @@ this.first(function()
 
   first.click(function()
   {
-    phoxy.ApiRequest(['room', __context.id]);
+    phoxy.ApiRequest(['room', __context.adv.id]);
   })
 })
 %>
