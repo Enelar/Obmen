@@ -54,12 +54,12 @@ class categories extends api
       "data" =>
       [
         "adv" => $res,
-        "crumbs" => $this->Path($id),
+        "crumbs" => $this->Parents($id),
       ],
     ];
   }
 
-  private function Path($id)
+  protected function Parents($id)
   {
     $res = db::Query("SELECT *
       FROM public.categories

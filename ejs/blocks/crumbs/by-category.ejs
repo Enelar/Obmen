@@ -1,0 +1,16 @@
+<%
+function F(cb)
+{
+  phoxy.ApiRequest(['adv/categories/Parents', this.id], function(r)
+  {
+    var d = r.data.Parents;
+    d.last_active = __context.last_active;
+    cb(d);
+  })
+}
+
+if (this.id !== undefined)
+  return this.DeferRender('blocks/crumbs/categories', F);
+this.DeferRender('blocks/crumbs/categories', {});
+%>
+<i class="right angle icon divider"></i>
