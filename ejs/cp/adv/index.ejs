@@ -2,9 +2,6 @@
   <h1>Предложить на обмен</h1>
   <h2>Опишите в двух словах что вы хотели бы обменять</h2>
   <form class="ui fluid form">
-    <h4 class="ui dividing header">Изображения</h4>
-    <%= this.DeferRender('utils/image') %>
-
     <h4 class="ui dividing header">Название</h4>
     <div class='ui input name'>
       <input />
@@ -15,7 +12,11 @@
       <textarea></textarea>
     </div>
 
-    <div class='ui button'>
+    <h4 class="ui dividing header">Изображения</h4>
+    <% this.DeferRender('utils/image') %>
+
+    <% this.DeferRender('cp/adv/category-select', {}) %>
+    <div class='ui submit button disabled'>
       Создать
     </div>
   </div>
@@ -37,20 +38,30 @@ function CollectImages()
   return images;
 }
 
+var category_button;
 this.first(function()
 {
   var first = this.first();
-  first.find('.button').click(function()
+  first.find('.submit.button').click(function()
   {
     var name = first.find('.name input').val();
     var descr = first.find('.descr textarea').val();
+    var category = category_button.attr('data-id');
 
-    phoxy.ApiRequest(['cp/adv/Add', name, descr, CollectImages()], function(r)
+    phoxy.ApiRequest(['cp/adv/Add', category, name, descr, CollectImages()], function(r)
     {
       if (typeof r.refuse != 'undefined')
         return;
       phoxy.MenuCall(['cp/adv', r.data.Add]);
     })
+  })
+})
+
+this.DeferCascade(function()
+{
+  category_button = this.first().find('.category.select.button').change(function()
+  {
+    __context.first().find('.submit.button').removeClass('disabled');
   })
 })
 %>

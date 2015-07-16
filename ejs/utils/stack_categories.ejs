@@ -17,7 +17,7 @@ function BeginColumn(v)
 {
 %>
   <div class="column">
-    <a href='/adv/categories/Show(<%@ v.id %>)'>
+    <a href='/adv/categories/Show(<%@ v.id %>)' data-id='<%@ v.id %>'>
       <h4 class="ui header"><%@ v.title %></h4>
     </a>
     <div class="ui link list">
@@ -35,7 +35,7 @@ function EndColumn()
 function Row(v)
 {
   %>
-      <a class="item" href='/adv/categories/Show(<%@ v.id %>)'>
+      <a class="item" href='/adv/categories/Show(<%@ v.id %>)' data-id='<%@ v.id %>'>
         <%@ v.title %>
       </a>
   <%

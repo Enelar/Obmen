@@ -1,0 +1,25 @@
+<div class='ui right labeled button category select'>
+  Выберите категорию
+</div>
+<div class="ui flowing popup transition">
+  <%= this.DeferRender('utils/stack_categories', 'adv/categories') %>
+</div>
+
+<%
+this.DeferCascade(function()
+{
+  var button = this.first();
+  button.popup({on: 'click'});
+
+  button.next().find('a').click(function()
+  {
+    button
+      .html($(this).html())
+      .attr('data-id', $(this).attr('data-id'))
+      .popup('hide')
+      .trigger('change');
+
+    return false;
+  })
+})
+%>

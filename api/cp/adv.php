@@ -17,7 +17,7 @@ class adv extends api
     ];
   }
 
-  protected function Add($name, $text, $images)
+  protected function Add($category, $name, $text, $images)
   {
     $imageobj = $this('api/utils', 'image');
     $uploadobj = $this('api/utils/image', 'upload');
@@ -31,8 +31,8 @@ class adv extends api
       $imageobj->ShelterOrphan($image->id, $image->name);
     }
 
-    $adid = db::Query("INSERT INTO public.adv(owner, name, descr, images, iid) VALUES ($1, $2, $3, $4, $5) RETURNING id",
-      [$this('api', 'auth')->uid(), $name, $text, $names, $iis], true);
+    $adid = db::Query("INSERT INTO public.adv(owner, category, name, descr, images, iid) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id",
+      [$this('api', 'auth')->uid(), $category, $name, $text, $names, $iis], true);
 
     return $adid->id;
   }

@@ -12,7 +12,7 @@ if (images == null)
       <div class='thumbnails'>
 <%
 if (images.length > 1)
-  foreach (var k in images)
+  for (var k in images)
   {
 %>
         <img class='ui tiny image' src="<%@ images[k] %>"/>
