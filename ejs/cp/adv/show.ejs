@@ -17,25 +17,20 @@
       <% this.DeferRender('blocks/image/with_thumbnails', {images: this.adv.images}) %>
     </div>
     <div class='seven wide column'>
-
+      <div class='ui label'>
+        <a>Категория1</a>
+      </div>
       <i class="right floated like link icon"></i>
       <i class="right floated star link icon"></i>
       <%= this.DeferRender(['user/link', this.adv.owner]) %>
 
-      <h3>
+      <div class='ui header'>
         <%@ this.adv.name %>
-      </h3>
+      </div>
 
-      <div class="sub header">
+      <div class="ui tiny grey header">
         Обьявление #<%@ this.adv.id %>
         от <%= this.DeferRender('utils/snaptodate', {date: this.adv.snap}) %>
-      </div>
-
-      <div class='ui label'>
-        <a>Категория1</a>
-      </div>
-      <div class='ui label'>
-        <a>Категория2</a>
       </div>
 
       <div class='ui segment'>
