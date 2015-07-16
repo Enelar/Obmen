@@ -9,9 +9,7 @@
       <% this.DeferRender('blocks/image/with_thumbnails', {images: this.adv.images}) %>
     </div>
     <div class='seven wide column'>
-      <div class='ui label'>
-        <a>Категория1</a>
-      </div>
+      <% this.DeferRender('blocks/category/label.by-id', {id: this.adv.category}) %>
 <% /*
       <i class="right floated like link icon"></i>
       <i class="right floated star link icon"></i>

@@ -1,0 +1,11 @@
+<%
+this.DeferRender('blocks/category/label', function(cb)
+{
+  phoxy.ApiRequest(['adv/categories/crumbs', __context.id], function(r)
+  {
+    var category = r.data.crumbs.slice(-1)[0];
+    cb(category);
+  })
+})
+
+%>
