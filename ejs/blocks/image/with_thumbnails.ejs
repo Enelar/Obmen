@@ -1,0 +1,35 @@
+<div class='image with thumbnails'>
+<%
+images = this.images;
+if (images == null)
+  images = ["/img/placeholder.png"];
+%>
+
+  <div class='thumbnails'>
+<%
+if (images.length > 1)
+  for (var k in images)
+  {
+%>
+    <img class='ui tiny image' src="<%@ images[k] %>"/>
+<%
+  }
+
+%>
+  </div>
+  <img class='ui image target' src='<%@ images[0] %>'>
+</div>
+
+<%
+this.first(function()
+{
+  var target = this.find('.target');
+  var hover = this.find('.thumbnails');
+
+  hover.find('img').mouseenter(function()
+  {
+    var src = $(this).attr('src');
+    target.attr('src', src);
+  })
+})
+%>
