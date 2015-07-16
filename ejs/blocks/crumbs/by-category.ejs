@@ -1,9 +1,9 @@
 <%
 function F(cb)
 {
-  phoxy.ApiRequest(['adv/categories/Parents', this.id], function(r)
+  phoxy.ApiRequest(['adv/categories/crumbs', __context.id], function(r)
   {
-    var d = r.data.Parents;
+    var d = r.data;
     d.last_active = __context.last_active;
     cb(d);
   })
