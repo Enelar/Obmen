@@ -14,12 +14,12 @@ class talk extends api
 
   protected function OnAdv($id)
   {
-    return 
+    return
     [
       "design" => "talk/talk",
       "data" =>
       [
-        "messages" => db::Query("SELECT * FROM public.messages WHERE tid=$1 ORDER BY id ASC", [$id], true),
+        "messages" => db::Query("SELECT * FROM public.messages WHERE tid=$1 ORDER BY tid ASC", [$id]),
       ]
     ];
   }
