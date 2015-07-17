@@ -6,7 +6,7 @@
     <div class='messages'>
       <div class='ui comments offer'>
 <%
-var images = "";
+var images = "<br>";
 for (var k in this.offer)
 {
   var v = this.offer[k];
@@ -21,7 +21,7 @@ var initial_comment =
   uid: this.from,
   message:
   {
-    text: 'Предлагаю обменять на одну из вещей: <br>',
+    text: 'Предлагаю обменять на одну из вещей:',
     snap: this.snap,
   }
 };
