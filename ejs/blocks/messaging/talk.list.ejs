@@ -8,7 +8,7 @@ for (var k in this.list)
 %>
   <tr>
     <td>
-      <button class='ui button'>Ответить</button>
+      <button class='ui button' data-room='<%@ v.tid %>'>Ответить</button>
     </td>
     <td>
       <% this.DeferRender('blocks/profile/link.by-id', {id: not_me}) %>
@@ -21,3 +21,13 @@ for (var k in this.list)
 }
 %>
 </table>
+
+<%
+this.first(function()
+{
+  this.next().find('.button').click(function()
+  {
+    phoxy.ApiRequest(['room', $(this).attr('data-room')]);
+  })
+})
+%>
