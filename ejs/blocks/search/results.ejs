@@ -3,13 +3,19 @@
 if (this.rows.length === 0)
 {
 %>
-<h2>Ничего не найдено, простите</h2>
+<h2>
+  Ничего не найдено, простите
+  <i class='icon link close'></i>
+</h2>
 <%
 }
 else
 {
 %>
-  <h2>Найдено <%@ this.rows.length %> объявлений</h2>
+  <h2>
+    Найдено <%@ this.rows.length %> объявлений
+    <i class='icon link close'></i>
+  </h2>
 <%
   for (var k in this.rows)
   {
@@ -39,3 +45,13 @@ else
 }
 %>
 </div>
+
+<%
+this.first(function()
+{
+  this.find('.close').click(function()
+  {
+    search.DeActivate();
+  })
+})
+%>

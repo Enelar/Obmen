@@ -50,5 +50,10 @@ search.Activate = function()
 
 search.DeActivate = function()
 {
-  $('body').removeClass('searching');
+  $('body').removeClass('searching').removeClass('attended');
+}
+
+search.Attend = function()
+{
+  $('body').addClass('attended');
 }
