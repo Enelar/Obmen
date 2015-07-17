@@ -1,30 +1,37 @@
 <div class='ui long scrolling modal talk'>
   <div class='header'>
-    Обмен
+    Обмен <% /* this.DeferRender(['cp/adv/imagelink', this.adv]) */ %>
   </div>
   <div class='content'>
-   <div class="image">
-      <%= this.DeferRender(['cp/adv/imagelink', this.adv]) %>
-    </div>
-    <div class="description">
-      Предлагаю обменять на одну из вещей:
-      <div class='offer'>
+    <div class='messages'>
+      <div class='ui comments offer'>
 <%
+var images = "";
 for (var k in this.offer)
 {
   var v = this.offer[k];
-%>
-  <%= this.DeferRender(['cp/adv/imagelink', v], undefined, function()
+  images += phoxy.DeferRender(['cp/adv/imagelink', v], undefined, function()
   {
     this.first().find('img').addClass('tiny').removeClass('fluid');
-  }) %>
-<%
+  })
 }
+
+var initial_comment =
+{
+  uid: this.from,
+  message:
+  {
+    text: 'Предлагаю обменять на одну из вещей: <br>',
+    snap: this.snap,
+  }
+};
+
+this.DeferRender('talk/comment.uid-only', initial_comment, function()
+{
+  this.first().find('.text').append(images);
+});
 %>
       </div>
-    </div>
-  </div>
-    <div class='messages'>
       <div class='old'>
         <%= this.DeferRender(['talk/OnAdv', this.tid]) %>
       </div>
@@ -56,7 +63,7 @@ this.first(function()
         phoxy.ApiRequest(['talk/Send', __context.tid, message], function()
         {
           var render_task = phoxy.DeferRender(['talk/OnAdv', __context.tid]);
-          __context.first().find('.messages .old').html(render_task);        
+          __context.first().find('.messages .old').html(render_task);
         });
 
         return false;

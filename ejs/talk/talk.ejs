@@ -20,8 +20,8 @@ function Draw()
   if (author === null)
     return; // wait to determine before continue
 
-  var task = 
-    phoxy.DeferRender('talk/comment', 
+  var task =
+    phoxy.DeferRender('talk/comment',
       {
         author: authors[uid],
         messages: accumulate

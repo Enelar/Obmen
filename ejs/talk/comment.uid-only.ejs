@@ -1,0 +1,10 @@
+<div>
+<% this.DeferRender('talk/comment', function(cb)
+{
+  phoxy.ApiRequest(['cp/profile/info', __context.uid], function(r)
+  {
+    __context.author = r.data;
+    cb(__context);
+  })
+}) %>
+</div>
