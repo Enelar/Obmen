@@ -52,6 +52,8 @@ function OnNewFileList(filelist)
 
 function OnNewFile(file)
 {
+  if (preview.children().size() >= 5)
+    return;
   preview.append(phoxy.DeferRender('image/preview.charged', {file: file}));
 }
 %>
