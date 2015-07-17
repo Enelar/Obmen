@@ -1,8 +1,1 @@
-<%
-if (this.name == null)
-  this.name = ["Авдошка", "Бигфутович"];
-%>
-<a href='/user(<%@ this.uid %>)'>
-  <%@ this.name[0] %>
-  <%@ this.name[1] %>
-</a>
+<% this.DeferRender('blocks/profile/link', this) %>
