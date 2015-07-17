@@ -39,7 +39,7 @@ class room extends api
 
     $this->RequireAdvOwnership($from, $offers);
 
-    $res = db::Query("INSERT INTO 
+    $res = db::Query("INSERT INTO
       public.talks
       (adv, \"from\", \"to\", offer)
       VALUES
@@ -51,6 +51,7 @@ class room extends api
     if (!$room)
       phoxy_protected_assert($room = $this->FindRoom($from, $aid), "Не удалось начать обмен.");
 
+    $this('api', 'talk', true)->Send($room, "Здравствуй!");
     return $this('api', 'talk', true)->Start($room);
   }
 
@@ -60,7 +61,7 @@ class room extends api
     foreach ($offers as $offer)
     {
       if ($advobj->Owner($offer) !== $me)
-        phoxy_protected_assert(false, 
+        phoxy_protected_assert(false,
         [
           "error" => "Вещь должна принадлежать вам, что бы ее можно было предложить на обмен",
           "data" =>

@@ -40,7 +40,16 @@ class talk extends api
     $res = db::Query('WITH talks AS
       (
         SELECT tid FROM "public"."talks" WHERE "from" = $1 OR "to" = $1
-      ) SELECT tid, count(*) FROM public.messages as a WHERE readed IS NULL AND uid != $1 GROUP BY tid',
+      ) SELECT a.tid, count(*)
+          FROM
+            public.messages as a,
+            talks as b
+          WHERE
+            a.tid = b.tid
+              AND readed IS NULL
+              AND uid == $1
+          GROUP BY a.tid
+          HAVING count(*) > 0',
       [$this('api', 'auth')->uid()]);
 
     return
@@ -48,7 +57,6 @@ class talk extends api
       'design' => 'blocks/messaging/notifications/envelope',
       'data' =>
       [
-        'summary' => $res,
         'count' => count($res),
       ],
     ];
