@@ -2,13 +2,19 @@
 
 class room extends api
 {
-  protected function Reserve($adv)
+  protected function Reserve($room)
   {
-    unset($this->addons['result']);
+    return $this('api', 'talk', true)->Start($room);
+  }
+
+  protected function OnAdv($adv)
+  {
     $uid = $this('api', 'auth')->uid();
 
     if ($room = $this->FindRoom($uid, $adv))
-      return $this('api', 'talk', true)->Start($room);
+      return $this->Reserve($room);
+
+    unset($this->addons['result']);
 
     return
     [
@@ -45,7 +51,7 @@ class room extends api
     if (!$room)
       phoxy_protected_assert($room = $this->FindRoom($from, $aid), "Не удалось начать обмен.");
 
-    return $this('api', 'talk', true)->Start($room);      
+    return $this('api', 'talk', true)->Start($room);
   }
 
   private function RequireAdvOwnership($me, $offers)

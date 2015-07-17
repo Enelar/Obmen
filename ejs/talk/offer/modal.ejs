@@ -1,6 +1,6 @@
 <div class='ui long scrolling modal offer'>
   <div class='header'>
-    Выберите что вы готовы предложить в обмен на      
+    Выберите что вы готовы предложить в обмен на
       <a href='cp/adv(<%@ this.adv %>)'>
         <%= this.DeferRender(['cp/adv/Name', this.adv]) %>
       </a>
@@ -8,7 +8,7 @@
   </div>
   <div class='content'>
     <div class="description">
-      <div class=''>        
+      <div class=''>
         Выбрано <snap class='ui blue label selected count'>0</snap> вещей
 
         <%= this.DeferRender('talk/offer/items', 'cp/profile/MyAdvertisments') %>
@@ -31,7 +31,7 @@ this.first(function()
     ({
       onApprove: function()
       {
-        var offer = [];        
+        var offer = [];
         __context.first().find('.my.items .selected').each(function()
         {
           offer.push($(this).attr('data-id'));
