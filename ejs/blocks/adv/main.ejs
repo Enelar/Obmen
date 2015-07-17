@@ -1,0 +1,23 @@
+<div>
+      <% this.DeferRender('blocks/category/label.by-id', {id: this.adv.category}) %>
+<% /*
+      <i class="right floated like link icon"></i>
+      <i class="right floated star link icon"></i>
+*/ %>
+      <%= this.DeferRender(['user/link', this.adv.owner]) %>
+
+      <a class='ui title header' href='/cp/adv(<%@ this.adv.id %>)'>
+        <%@ this.adv.name %>
+      </a>
+
+      <div class="ui tiny grey header date">
+        Обьявление #<%@ this.adv.id %>
+        от <%= this.DeferRender('utils/snaptodate', {date: this.adv.snap}) %>
+      </div>
+
+      <div class='ui segment'>
+        <div><%@ this.adv.descr %></div>
+
+        <%= this.DeferRender('blocks/adv/start-talk', {adv: this.adv }) %>
+      </div>
+</div>

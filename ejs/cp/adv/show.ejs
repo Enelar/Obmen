@@ -9,27 +9,14 @@
       <% this.DeferRender('blocks/image/with_thumbnails', {images: this.adv.images}) %>
     </div>
     <div class='seven wide column'>
-      <% this.DeferRender('blocks/category/label.by-id', {id: this.adv.category}) %>
-<% /*
-      <i class="right floated like link icon"></i>
-      <i class="right floated star link icon"></i>
-*/ %>
-      <%= this.DeferRender(['user/link', this.adv.owner]) %>
-
-      <div class='ui header'>
-        <%@ this.adv.name %>
-      </div>
-
-      <div class="ui tiny grey header">
-        Обьявление #<%@ this.adv.id %>
-        от <%= this.DeferRender('utils/snaptodate', {date: this.adv.snap}) %>
-      </div>
-
-      <div class='ui segment'>
-        <div><%@ this.adv.descr %></div>
-
-        <%= this.DeferRender('blocks/adv/start-talk', {adv: this.adv }) %>
-      </div>
+      <% this.DeferRender('blocks/adv/main', this) %>
     </div>
   </div>
 </div>
+
+<%
+this.DeferCascade(function()
+{
+  this.first().find('.title.header').remove();
+})
+%>

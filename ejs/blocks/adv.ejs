@@ -9,41 +9,7 @@ if (images == null)
       <img src="<%@ images[0] %>">
     </a>
     <div class="content">
-      <div class='thumbnails'>
-<%
-if (images.length > 1)
-  for (var k in images)
-  {
-%>
-        <img class='ui tiny image' src="<%@ images[k] %>"/>
-<%
-  }
-
-%>
-      </div>
-
-      <i class="right floated like link icon"></i>
-      <i class="right floated star link icon"></i>
-      <a class="header" href="/cp/adv(<%@ this.adv.id %>)"><%@ this.adv.name %></a>
-
-      <div class="meta">
-        Обьявление #<%@ this.adv.id %>
-        от <%= this.DeferRender('utils/snaptodate', {date: this.adv.snap}) %>
-      </div>
-
-      <div class="description">
-        <p><%@ this.adv.descr %></p>
-      </div>
-      <div class='extra'>
-        <%= this.DeferRender('blocks/adv/start-talk', {adv: this.adv}) %>
-
-        <div class='ui label'>
-          <a>Категория1</a>
-        </div>
-        <div class='ui label'>
-          <a>Категория2</a>
-        </div>
-      </div>
+      <% this.DeferRender('blocks/adv/main', this) %>
     </div>
   </div>
 </div>
