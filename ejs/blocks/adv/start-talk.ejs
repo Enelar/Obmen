@@ -1,7 +1,6 @@
 <%
-//if (this.adv.uid == window.uid())
-//  return;
-// Cant exchange with yourself
+if (this.adv.owner == window.uid())
+  return;
 %>
 
 <div class="ui right floated primary button">
