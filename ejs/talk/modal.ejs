@@ -49,14 +49,29 @@ this.DeferRender('talk/comment.uid-only', initial_comment, function()
 </div>
 
 <%
+var input;
+
+function Send()
+{
+  var message = input.val();
+  input.val('');
+
+  phoxy.ApiRequest(['talk/Send', __context.tid, message], function()
+  {
+    var render_task = phoxy.DeferRender(['talk/OnAdv', __context.tid]);
+    __context.first().find('.messages .old').html(render_task);
+  });
+}
+
 this.first(function()
 {
+  input = __context.first().find('input');
+
   this.first()
     .modal
     ({
       onApprove: function()
       {
-        var input = __context.first().find('input');
         var message = input.val();
         input.val('');
 
@@ -74,6 +89,14 @@ this.first(function()
       }
     })
     .modal('show');
+
+  input.keyup(function(event)
+  {
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if (keycode != 13)
+      return;
+    Send();
+  })
 
   var send = this.first().find('.send.button');
   send.click(function()
