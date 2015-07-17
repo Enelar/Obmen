@@ -8,6 +8,13 @@ class main extends api
     return
     [
       'design' => 'main/body',
+
+      'script' => 'main/login',
+      'before' => 'set_uid',
+      'data' =>
+      [
+        'get_login' => $this('api', 'auth')->get_uid(),
+      ]
     ];
   }
 
