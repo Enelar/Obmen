@@ -34,4 +34,23 @@ class talk extends api
   {
     return db::Query("SELECT * FROM public.talks WHERE tid=$1", [$id], true);
   }
+
+  protected function Notifications()
+  {
+    $res = db::Query('WITH talks AS
+      (
+        SELECT tid FROM "public"."talks" WHERE "from" = $1 OR "to" = $1
+      ) SELECT tid, count(*) FROM public.messages as a WHERE readed IS NULL AND uid != $1 GROUP BY tid',
+      [$this('api', 'auth')->uid()]);
+
+    return
+    [
+      'design' => 'blocks/messaging/notifications/envelope',
+      'data' =>
+      [
+        'summary' => $res,
+        'count' => count($res),
+      ],
+    ];
+  }
 }

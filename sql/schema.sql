@@ -170,7 +170,8 @@ CREATE TABLE messages (
     tid integer NOT NULL,
     uid integer NOT NULL,
     text character varying(255) NOT NULL,
-    snap timestamp(6) with time zone DEFAULT now()
+    snap timestamp(6) with time zone DEFAULT now() NOT NULL,
+    readed timestamp(6) with time zone
 );
 
 
