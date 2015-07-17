@@ -1,0 +1,15 @@
+<div class='charged preview'>
+  <i class='close link icon'></i>
+  <% this.DeferRender('image/preview', this) %>
+</div>
+
+<%
+this.first(function()
+{
+  var first = this;
+  first.find('.close').click(function()
+  {
+    first.remove();
+  })
+})
+%>
