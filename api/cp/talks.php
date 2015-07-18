@@ -26,11 +26,9 @@ class talks extends api
         "SELECT *
           FROM public.messages
           WHERE tid = $1
-            AND readed IS NULL
-            AND uid != $2
           ORDER BY mid DESC
           LIMIT 1",
-            [$row->tid, $uid], true);
+            [$row->tid], true);
 
       $ret[] = array_merge($row->__2array(), $count->__2array(), $last_message->__2array());
     }

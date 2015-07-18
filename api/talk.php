@@ -23,7 +23,7 @@ class talk extends api
     $messages = db::Query("SELECT * FROM public.messages WHERE tid=$1 ORDER BY mid ASC", [$id]);
 
     // read them
-    // db::Query("UPDATE public.messages SET readed=now() WHERE tid=$1 AND uid!=$2", [$id, $this('api', 'auth')->uid()]);
+    db::Query("UPDATE public.messages SET readed=now() WHERE tid=$1 AND uid!=$2", [$id, $this('api', 'auth')->uid()]);
 
     return
     [
