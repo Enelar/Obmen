@@ -1,1 +1,4 @@
-<% this.DeferRender('blocks/profile/link', ['cp/profile/info', __context.id]) %>
+<%
+phoxy.Log(3, "Kindly notice you that link.by-id is deprecated. Use link.by-uid instead. Thanks");
+this.DeferRender('blocks/profile/link.by-uid', this);
+%>
