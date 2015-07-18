@@ -7,7 +7,7 @@
     var v = this.list[k];
     var not_me = v.from == uid() ? v.to : v.from;
   %>
-    <tr>
+    <tr class='<%@ v.unread > 0 ? 'unread' : '' %>'>
       <td class='ui comments' data-tid='<%@ v.tid %>'>
         <% this.DeferRender('talk/comment.uid-only', {message: v}) %>
       </td>
@@ -17,7 +17,7 @@
       </td>
       <td>
 <% if (v.unread > 0) { %>
-        <div class='ui red label'>
+        <div class='ui red label unread'>
           <%@ v.unread %>
         </div>
 <% } %>
@@ -38,7 +38,7 @@ this.first(function()
 
   this.find('.table .comments').click(function()
   {
-    var url = ['talks', $(this).attr('data-tid')];
+    var url = ['/talk', $(this).attr('data-tid')];
     draw.html(phoxy.DeferRender(url));
     phoxy.ChangeHash(url);
     return false;
