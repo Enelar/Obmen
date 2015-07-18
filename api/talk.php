@@ -61,7 +61,7 @@ class talk extends api
           WHERE
             a.tid = b.tid
               AND readed IS NULL
-              AND uid == $1
+              AND uid != $1
           GROUP BY a.tid
           HAVING count(*) > 0',
       [$this('api', 'auth')->uid()]);
