@@ -1,7 +1,18 @@
+<%
+var uid = __context.uid;
+if (uid == undefined)
+{
+  if (__context.messages != undefined)
+    uid = __context.messages[0].uid;
+  else
+    uid = __context.message.uid;
+}
+%>
+
 <div>
 <% this.DeferRender('talk/comment', function(cb)
 {
-  phoxy.ApiRequest(['cp/profile/info', __context.uid], function(r)
+  phoxy.ApiRequest(['cp/profile/info', uid], function(r)
   {
     __context.author = r.data;
     cb(__context);
