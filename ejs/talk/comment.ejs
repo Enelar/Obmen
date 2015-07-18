@@ -24,13 +24,9 @@ if (this.messages.length == 0)
 
 
 <div class="comment">
-  <a class="avatar">
-    <img src="<%@ this.author.avatar[0] %>">
-  </a>
+  <% this.DeferRender('blocks/profile/avatar', this.author) %>
   <div class="content">
-    <a class="author" href="cp/profile(<%@ this.author.uid %>)">
-      <%@ this.author.name[0] %> <%@ this.author.name[1] %>
-    </a>
+    <% this.DeferRender('blocks/profile/link', this.author) %>
     <div class="metadata">
       <div class="date"><%@ this.messages[0].snap %></div>
     </div>

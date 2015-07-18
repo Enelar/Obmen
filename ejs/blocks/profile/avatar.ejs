@@ -1,0 +1,17 @@
+<%
+function Image()
+{
+  if (__context.avatar == undefined)
+    return "/img/placeholder.png";
+  return __context.avatar[0];
+}
+
+if (__context.uid != undefined)
+{ %> <a class='avatar' href='/cp/profile(<%@ __context.uid %>)'> <% } %>
+  <img src="<%@ Image() %>">
+<%
+if (__context.uid != undefined)
+{ %> </a> <% }
+
+
+%>

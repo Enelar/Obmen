@@ -9,13 +9,15 @@
   %>
     <tr>
       <td>
-        <button class='ui button' data-room='<%@ v.tid %>'>Ответить</button>
-      </td>
-      <td>
         <% this.DeferRender('blocks/profile/link.by-id', {id: not_me}) %>
       </td>
+
       <td>
         <% this.DeferRender('blocks/adv/name.by-id', {id: v.adv}) %>
+      </td>
+
+      <td class='ui comments'>
+        <% this.DeferRender('talk/comment.uid-only', {message: v}) %>
       </td>
     </tr>
   <%
