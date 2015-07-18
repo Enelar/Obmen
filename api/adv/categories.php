@@ -46,7 +46,7 @@ class categories extends api
         tree <@
           (SELECT tree FROM public.categories WHERE id=$1)
 ) SELECT adv.* FROM public.adv, cats WHERE category=cats.id ORDER BY category DESC, adv.id DESC",
-        [$id], true);
+        [$id]);
 
     return
     [
