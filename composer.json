@@ -5,7 +5,7 @@
     "mustangostang/spyc" : "~0.5.1",
     "ext-gd": "*",
     "oyejorge/less.php": "~1.5",
-    "enelar/phpsql": "~0.0.0"
+    "enelar/phpsql": "~0.0"
   },
   "repositories":
   [
