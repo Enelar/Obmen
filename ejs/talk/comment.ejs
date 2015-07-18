@@ -1,3 +1,28 @@
+<%
+if (typeof this.messages === 'undefined')
+  this.messages = [this.message];
+
+function FilterEmpty(messages)
+{
+  var ret = [];
+
+  for (var k in messages)
+  {
+    var v = messages[k];
+    if (v.text.match(/^\s*/)[0].length == v.text.length)
+      continue; // empty
+    ret.push(v);
+  }
+
+  return ret;
+}
+
+this.messages = FilterEmpty(this.messages);
+if (this.messages.length == 0)
+  return;
+%>
+
+
 <div class="comment">
   <a class="avatar">
     <img src="<%@ this.author.avatar[0] %>">
@@ -6,10 +31,6 @@
     <a class="author" href="cp/profile(<%@ this.author.uid %>)">
       <%@ this.author.name[0] %> <%@ this.author.name[1] %>
     </a>
-<%
-if (typeof this.messages === 'undefined')
-  this.messages = [this.message];
-%>
     <div class="metadata">
       <div class="date"><%@ this.messages[0].snap %></div>
     </div>
