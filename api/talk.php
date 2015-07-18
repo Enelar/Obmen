@@ -14,12 +14,18 @@ class talk extends api
 
   protected function OnAdv($id)
   {
+    $this->RequireTalker($id);
+    $messages = db::Query("SELECT * FROM public.messages WHERE tid=$1 ORDER BY mid ASC", [$id]);
+
+    // read them
+    // db::Query("UPDATE public.messages SET readed=now() WHERE tid=$1 AND uid!=$2", [$id, $this('api', 'auth')->uid()]);
+
     return
     [
       "design" => "talk/talk",
       "data" =>
       [
-        "messages" => db::Query("SELECT * FROM public.messages WHERE tid=$1 ORDER BY mid ASC", [$id]),
+        "messages" => $messages
       ]
     ];
   }
@@ -33,6 +39,14 @@ class talk extends api
   private function info($id)
   {
     return db::Query("SELECT * FROM public.talks WHERE tid=$1", [$id], true);
+  }
+
+  private function RequireTalker($id)
+  {
+    $uid = $this('api', 'auth')->uid();
+    $room = $this->info($id);
+
+    phoxy_protected_assert($room->from == $uid || $room->to == $uid, "Это чужой разговор! Нельзя его читать!!");
   }
 
   protected function Notifications()
