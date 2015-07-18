@@ -19,7 +19,7 @@ class talk extends api
       "design" => "talk/talk",
       "data" =>
       [
-        "messages" => db::Query("SELECT * FROM public.messages WHERE tid=$1 ORDER BY tid ASC", [$id]),
+        "messages" => db::Query("SELECT * FROM public.messages WHERE tid=$1 ORDER BY mid ASC", [$id]),
       ]
     ];
   }
