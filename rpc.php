@@ -9,16 +9,16 @@ ini_set('display_errors','On');
 
 include_once('utils/config.php');
 
-include_once('phpsql/phpsql.php');
-include_once('phpsql/pgsql.php');
+include_once('vendor/enelar/phpsql/phpsql.php');
+include_once('vendor/enelar/phpsql/pgsql.php');
 $sql = new phpsql();
 if (PRODUCTION)
   $pg = $sql->Connect(str_replace('postgres', 'pgsql', $_SERVER['DATABASE_URL']));
 else
   $pg = $sql->Connect("pgsql://postgres@localhost/obmen");
-include_once('phpsql/wrapper.php');
+include_once('vendor/enelar/phpsql/wrapper.php');
 
-include_once('phpsql/db.php');
+include_once('vendor/enelar/phpsql/db.php');
 db::Bind(new phpsql\utils\wrapper($pg));
 
 include("sql/loader.php");

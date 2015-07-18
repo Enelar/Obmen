@@ -95,7 +95,7 @@ SET default_with_oids = false;
 CREATE TABLE adv (
     id integer NOT NULL,
     owner integer NOT NULL,
-    category integer,
+    category smallint,
     name character varying(255),
     descr text,
     images character varying(255)[],

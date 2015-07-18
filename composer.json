@@ -4,6 +4,14 @@
     "php": "~5.5",
     "mustangostang/spyc" : "~0.5.1",
     "ext-gd": "*",
-    "oyejorge/less.php": "~1.5"
-  }
+    "oyejorge/less.php": "~1.5",
+    "enelar/phpsql": "~0.0.0"
+  },
+  "repositories":
+  [
+    {
+      "type": "vcs",
+      "url": "https://github.com/enelar/phpsql"
+    }
+  ]
 }
