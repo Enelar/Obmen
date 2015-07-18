@@ -1,3 +1,13 @@
 <div>
   <% this.DeferRender('cp/adv/index', this) %>
 </div>
+
+<%
+this.DeferCascade(function()
+{
+debugger;
+  var first = this.first();
+  first.find('.name input').val(this.adv.name);
+  first.find('.descr input').val(this.adv.descr);
+})
+%>

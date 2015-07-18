@@ -2,6 +2,13 @@
 
 class adv extends api
 {
+  private $adv;
+
+  public function __construct($adv)
+  {
+    $this->adv = $adv;
+  }
+
   protected function Reserve($id = null)
   {
     if (is_null($id))
@@ -81,5 +88,17 @@ class adv extends api
   public function info($id)
   {
     return db::Query("SELECT * FROM public.adv WHERE id=$1", [$id], true);;
+  }
+
+  protected function edit()
+  {
+    return
+    [
+      "design" => "cp/adv/edit",
+      "data" =>
+      [
+        "adv" => $this->info($this->adv),
+      ]
+    ];
   }
 }
