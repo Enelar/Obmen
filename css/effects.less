@@ -1,0 +1,17 @@
+/* colour transitions */
+
+.animation-colours {
+  .animation-mixin(animation-colours 48s 30 ease-in-out);
+}
+
+.keyframes-mixin(animation-colours, {
+  0% { background-color: #3498db; }
+  15% { background-color: #2ecc71; }
+  28% { background-color: #1abc9c; }
+  41% { background-color: #9b59b6; }
+  53% { background-color: #e74c3c; }
+  65% { background-color: #f39c12; }
+  78% { background-color: #e67e22; }
+  90% { background-color: #2ecc71; }
+  100% { background-color: #3498db; }
+});

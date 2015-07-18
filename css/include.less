@@ -27,8 +27,20 @@
 }
 
 .google_color_gradient_linear(@rgb, @a1, @a2, @width) {
-  @return: 
+  @return:
     ~"rgba(@{rgb},@{a1}) 0%,"
     ~"rgba(@{rgb},"@a1 + (@a2 - @a1) * 0.5~")" @width*0.3 ~","
     ~"rgba(@{rgb},@{a2}) @{width}";
+}
+
+.keyframes-mixin(@name, @frames) {
+  @keyframes @name {@frames();}
+  @-o-keyframes @name {@frames();}
+  @-ms-keyframes @name {@frames();}
+  @-moz-keyframes @name {@frames();}
+  @-webkit-keyframes @name {@frames();}
+}
+
+.animation-mixin(@code) {
+  .cutting_edge(animation, @code);
 }
