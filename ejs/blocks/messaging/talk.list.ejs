@@ -1,4 +1,4 @@
-<div>
+<div class='my talks'>
   <h2>Активных разговоров <%@ this.list.length %></h2>
   <table class='ui table'>
   <%
@@ -8,16 +8,19 @@
     var not_me = v.from == uid() ? v.to : v.from;
   %>
     <tr>
-      <td>
-        <% this.DeferRender('blocks/profile/link.by-id', {id: not_me}) %>
+      <td class='ui comments' data-tid='<%@ v.tid %>'>
+        <% this.DeferRender('talk/comment.uid-only', {message: v}) %>
       </td>
 
       <td>
         <% this.DeferRender('blocks/adv/name.by-id', {id: v.adv}) %>
       </td>
-
-      <td class='ui comments'>
-        <% this.DeferRender('talk/comment.uid-only', {message: v}) %>
+      <td>
+<% if (v.unread > 0) { %>
+        <div class='ui red label'>
+          <%@ v.unread %>
+        </div>
+<% } %>
       </td>
     </tr>
   <%
@@ -32,9 +35,13 @@
 this.first(function()
 {
   var draw = this.find('.draw.place');
-  this.find('.button').click(function()
+
+  this.find('.table .comments').click(function()
   {
-    draw.html(phoxy.DeferRender(['room', $(this).attr('data-room')]));
+    var url = ['talks', $(this).attr('data-tid')];
+    draw.html(phoxy.DeferRender(url));
+    phoxy.ChangeHash(url);
+    return false;
   })
 })
 %>

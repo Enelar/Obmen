@@ -2,6 +2,11 @@
 
 class talk extends api
 {
+  protected function Reserve($id)
+  {
+    return $this->Start($id);
+  }
+
   protected function Start($id)
   {
     unset($this->addons['result']);
