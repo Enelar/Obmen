@@ -1,33 +1,38 @@
-<h2>Активных разговоров <%@ this.list.length %></h2>
-<table class='ui table'>
-<%
-for (var k in this.list)
-{
-  var v = this.list[k];
-  var not_me = v.from == uid() ? v.to : v.from;
-%>
-  <tr>
-    <td>
-      <button class='ui button' data-room='<%@ v.tid %>'>Ответить</button>
-    </td>
-    <td>
-      <% this.DeferRender('blocks/profile/link.by-id', {id: not_me}) %>
-    </td>
-    <td>
-      <% this.DeferRender('blocks/adv/name.by-id', {id: v.adv}) %>
-    </td>
-  </tr>
-<%
-}
-%>
-</table>
+<div>
+  <h2>Активных разговоров <%@ this.list.length %></h2>
+  <table class='ui table'>
+  <%
+  for (var k in this.list)
+  {
+    var v = this.list[k];
+    var not_me = v.from == uid() ? v.to : v.from;
+  %>
+    <tr>
+      <td>
+        <button class='ui button' data-room='<%@ v.tid %>'>Ответить</button>
+      </td>
+      <td>
+        <% this.DeferRender('blocks/profile/link.by-id', {id: not_me}) %>
+      </td>
+      <td>
+        <% this.DeferRender('blocks/adv/name.by-id', {id: v.adv}) %>
+      </td>
+    </tr>
+  <%
+  }
+  %>
+  </table>
+  <div class='draw place'>
+  </div>
+</div>
 
 <%
 this.first(function()
 {
-  this.next().find('.button').click(function()
+  var draw = this.find('.draw.place');
+  this.find('.button').click(function()
   {
-    phoxy.ApiRequest(['room', $(this).attr('data-room')]);
+    draw.html(phoxy.DeferRender(['room', $(this).attr('data-room')]));
   })
 })
 %>
