@@ -8,6 +8,9 @@
     var not_me = v.from == uid() ? v.to : v.from;
   %>
     <tr class='<%@ v.unread > 0 ? 'unread' : '' %>'>
+      <td>
+        <% this.DeferRender('blocks/profile/avatar.by-uid', v) %>
+      </td>
       <td class='ui comments' data-tid='<%@ v.tid %>'>
         <% this.DeferRender('talk/comment.uid-only', {message: v}) %>
       </td>
@@ -41,7 +44,6 @@ this.first(function()
     var url = ['/talk', $(this).attr('data-tid')];
     draw.html(phoxy.DeferRender(url));
     phoxy.ChangeHash(url);
-    return false;
   })
 })
 %>
