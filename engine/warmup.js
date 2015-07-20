@@ -22,6 +22,15 @@ var warmup_obj =
     {
       baseUrl: phoxy.config['js_dir'],
     });
+
+    $('head').append
+    (
+      '<link rel="subresource" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.0.0/semantic.min.js">'
+      + '<link rel="subresource" href="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js">'
+      + '<link rel="prefetch" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.0.0/semantic.min.js">'
+      + '<link rel="prefetch" href="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js">'
+    );
+
   },
   OnAfterCompile: function()
   {
