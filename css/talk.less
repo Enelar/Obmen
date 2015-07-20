@@ -24,16 +24,24 @@ body .talk.modal > .actions {
   opacity: 0.7;
 }
 
+.my.talks .table .interlocutor {
+  padding-bottom: 2em;
+}
+
 .my.talks .table .comments {
-  cursor: hand;
+  cursor: pointer;
+}
+
+.my.talks .table tr .comments:hover {
+  background-color: #AAA;
 }
 
 .my.talks .table tr.unread {
   background-color: #E7E7E7;
 }
 
-.my.talks .table tr:hover .comments {
-  background-color: #AAA;
+.my.talks .table .comments .profile.link {
+  display: none;
 }
 
 .talk .comment .text.unread {
