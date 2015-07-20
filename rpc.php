@@ -51,7 +51,7 @@ function default_addons( $name )
 {
   $ret =
   [
-    "cache" => ["no"],
+    "cache" => ["global" => "10m"],
     "result" => "canvas",
   ];
   return $ret;
