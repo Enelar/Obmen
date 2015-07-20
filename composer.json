@@ -1,14 +1,24 @@
 {
+  "minimum-stability": "dev",
   "require" :
   {
     "php": "~5.5",
     "mustangostang/spyc" : "~0.5.1",
     "ext-gd": "*",
     "oyejorge/less.php": "~1.5",
-    "enelar/phpsql": "~0.0"
+    "enelar/phpsql": "~0.0",
+    "phoxy/phoxy": "~1.4.0.1"
   },
   "repositories":
   [
+    {
+      "type": "vcs",
+      "url": "https://github.com/phoxy/ENJS"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/phoxy/phoxy"
+    },
     {
       "type": "vcs",
       "url": "https://github.com/enelar/phpsql"

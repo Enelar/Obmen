@@ -4,6 +4,8 @@ RewriteEngine On
 RewriteCond %{QUERY_STRING} _escaped_fragment_
 RewriteRule ^(.*)$ engine/shot.php [END,PT,QSA]
 
+RewriteRule ^css$ css/compile.php [END,PT,QSA]
+RewriteRule ^enjs$ phoxy/enjs.php [END,PT,QSA]
 RewriteRule ^robots.txt$ api/utils/robot/robot
 RewriteRule ^sitemap.xml$ api/utils/robot/sitemap
 
@@ -17,8 +19,6 @@ RewriteCond %{REQUEST_URI} !^/js [NC]
 RewriteRule ^(.*)$ engine/coldstart.php?url=$1 [END,PT,QSA]
 
 RewriteRule ^$ engine/coldstart.php [END,PT,QSA]
-
-RewriteRule ^css$ css/compile.php [END,PT,QSA]
 
 RedirectMatch 403 /\.git
 RedirectMatch 403 /sql
