@@ -29,7 +29,8 @@
     </div>
 
     <div class='item'>
-      <% if (uid()) this.DeferRender('talk/Notifications') %>
+      <% this.DeferRender('blocks/messaging/notifications/envelope',
+          uid() ? 'talk/Notifications' : {count: 0}) %>
     </div>
   </div>
 </div>

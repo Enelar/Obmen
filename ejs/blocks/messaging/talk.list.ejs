@@ -9,7 +9,13 @@
   %>
     <tr class='<%@ v.unread > 0 ? 'unread' : '' %>'>
       <td>
-        <% this.DeferRender('blocks/profile/avatar.by-uid', v) %>
+        <div class='ui segment'>
+          <% this.DeferRender('blocks/profile/avatar.by-uid', v) %>
+          <div class='user name block'>
+            <% this.DeferRender('blocks/profile/link.by-uid', {uid: v.from}) %>
+            <br>
+          </div>
+        </div>
       </td>
       <td class='ui comments' data-tid='<%@ v.tid %>'>
         <% this.DeferRender('talk/comment.uid-only', {message: v}) %>
