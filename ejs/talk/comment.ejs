@@ -9,6 +9,8 @@ function FilterEmpty(messages)
   for (var k in messages)
   {
     var v = messages[k];
+    if (v.text == undefined)
+      continue;
     if (v.text.match(/^\s*/)[0].length == v.text.length)
       continue; // empty
     ret.push(v);
