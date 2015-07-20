@@ -2,3 +2,4 @@ secret.yaml
 vendor
 img/uploaded
 composer.lock
+phoxy
