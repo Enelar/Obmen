@@ -1,0 +1,47 @@
+<%
+var event = new window.Date(this.snap);
+var now = new window.Date();
+
+var difference = now - event;
+var diff = new Date(difference);
+
+var week_dictonary =
+[
+  'Понедельник',
+  'Вторник',
+  'Среда',
+  'Четверг',
+  'Пятница',
+  'Суббота',
+  'Воскресенье',
+];
+
+var diff_days = diff.getDate() - 1;
+var reldate = false;
+if (diff.getFullYear() != 1970 || diff.getMonth() != 0 || diff_days > 6)
+  this.DeferRender('utils/snap-to-date', this);
+else
+{
+  reldate = true;
+  if (diff_days > 1)
+    __append(week_dictonary[diff.getDay()]);
+  else if (diff_days == 1)
+    __append("Вчера");
+}
+
+if (!reldate || diff_days) // not today
+  this.DeferRender('utils/snap-to-time', this);
+else
+{
+  var hours = diff.getHours();
+  var minutes = diff.getMinutes();
+
+  if (hours > 1)
+    __append(" " + hours + " часов назад");
+  else if (minutes > 1)
+    __append(" " + minutes + " минут назад");
+  else
+    __append("Только что");
+}
+
+%>

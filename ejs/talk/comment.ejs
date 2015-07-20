@@ -28,7 +28,7 @@ if (this.messages.length == 0)
   <div class="content">
     <% this.DeferRender('blocks/profile/link', this.author) %>
     <div class="metadata">
-      <div class="date"><%@ this.messages[0].snap %></div>
+      <div class="date"><% this.DeferRender('utils/snap-to-relative', this.messages[0]) %></div>
     </div>
 <%
 for (var k in this.messages)
