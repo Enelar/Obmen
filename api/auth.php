@@ -5,7 +5,6 @@ class auth extends api
 {
   protected function uid()
   {
-    $this->addons['cache'] = ['no'];
     if (!SOFT_REG)
       phoxy_protected_assert
       (
@@ -36,6 +35,7 @@ class auth extends api
 
   public function get_uid($id = null)
   {
+    $this->addons['cache'] = ['no']; // everything that require user id should not be cached
     if (session_status() !== PHP_SESSION_ACTIVE)
       session_start();
     global $_SESSION;
