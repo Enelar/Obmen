@@ -2,7 +2,24 @@
 var date = new window.Date(this.snap);
 
 var Date = date.getDate();
-var Month = date.getMonth() + 1;
+var Month = date.getMonth();
 var FullYear = date.getFullYear();
+
+var dictonary =
+[
+  'янв',
+  'фев',
+  'март',
+  'апр',
+  'май',
+  'июнь',
+  'июль',
+  'авг',
+  'сент',
+  'окт',
+  'ноя',
+  'дек',
+];
+
 %>
-<%@ Date %>-<%@ Month %>-<%@ FullYear %>
+<%@ Date %> <%@ dictonary[Month] %> <%@ FullYear %>
