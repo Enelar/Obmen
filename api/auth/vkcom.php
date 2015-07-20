@@ -7,6 +7,7 @@ class vkcom extends api
 
     public function __construct()
     {
+        $this->addons["stop_if_first"] = true;
         parent::__construct();
         $this->integration = $this('api/integration', 'vk', true);
         $this->raw_integration = $this('api/integration/vk', 'raw', true);

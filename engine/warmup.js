@@ -94,11 +94,15 @@ var warmup_obj =
     $('.removeafterload').remove();
     $('body').trigger('initialrender');
 
-    phoxy.MenuCall(location.pathname.substr(1) + location.search, function()
+    phoxy.AJAX(location.pathname.substr(1) + location.search, function(r)
     {
+      phoxy.ApiAnswer(r);
       phoxy.Log(3, "First page rendered");
+
+      if (r.stop_if_first)
+        return;
       phoxy.ApiRequest('main/Hat');
-    });
+    })
   }
 };
 
