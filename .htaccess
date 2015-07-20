@@ -5,7 +5,7 @@ RewriteCond %{QUERY_STRING} _escaped_fragment_
 RewriteRule ^(.*)$ engine/shot.php [END,PT,QSA]
 
 RewriteRule ^css$ css/compile.php [END,PT,QSA]
-RewriteRule ^enjs$ phoxy/enjs.php [END,PT,QSA]
+RewriteRule ^enjs.js$ engine/enjs.php [END,PT,QSA]
 RewriteRule ^robots.txt$ api/utils/robot/robot
 RewriteRule ^sitemap.xml$ api/utils/robot/sitemap
 
