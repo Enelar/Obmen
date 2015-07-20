@@ -1,8 +1,4 @@
 <%
-var date = new window.Date(this.date);
-
-var Date = date.getDate();
-var Month = date.getMonth() + 1;
-var FullYear = date.getFullYear();
+phoxy.Log(3, "Just kindly notify that utils/snaptodate is deprecated. Use utils/snap-to-date instead")
+this.DeferRender('utils/snap-to-date', {snap: this.date})
 %>
-<%@ Date %>-<%@ Month %>-<%@ FullYear %>

@@ -1,0 +1,8 @@
+<%
+var date = new window.Date(this.snap);
+
+var Hour = date.getHours();
+var Minutes = date.getMinutes() + 1;
+var Seconds = date.getSeconds();
+%>
+<%@ Hour %>:<%@ Minutes %>:<%@ Seconds %>
