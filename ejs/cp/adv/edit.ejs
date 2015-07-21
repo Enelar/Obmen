@@ -7,7 +7,7 @@ this.DeferCascade(function()
 {
   var first = this.first();
   first.find('.name input').val(this.adv.name);
-  first.find('.descr input').val(this.adv.descr);
+  first.find('.descr textarea').val(this.adv.descr);
 
   var target = first.find('.image.upload.index');
   target.prepend("<div class='files to show'></div>");
@@ -18,5 +18,7 @@ this.DeferCascade(function()
     var v = this.adv.images[k];
     target.append(phoxy.DeferRender('image/view.charged', {image: v}));
   }
+
+  first.find('.category.select').next().find('[data-id="' + this.adv.category +'"]').click();
 })
 %>
