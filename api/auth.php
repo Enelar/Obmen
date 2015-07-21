@@ -35,7 +35,8 @@ class auth extends api
 
   public function get_uid($id = null)
   {
-    $this->addons['cache'] = ['no']; // everything that require user id should not be cached
+    global $USER_SENSITIVE;
+    $USER_SENSITIVE = true;
     if (session_status() !== PHP_SESSION_ACTIVE)
       session_start();
     global $_SESSION;

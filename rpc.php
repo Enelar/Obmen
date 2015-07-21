@@ -65,4 +65,14 @@ if ($rpc_string == '/api/')
   $rpc_string = '/api/main/Home';
 $_GET['api'] = $rpc_string;
 
+
+include('phoxy/phoxy_return_worker.php');
+phoxy_return_worker::$add_hook_cb = function($that)
+{
+  global $USER_SENSITIVE;
+
+  if ($USER_SENSITIVE)
+    $that->obj['cache'] = 'no';
+};
+
 include('phoxy/index.php');
