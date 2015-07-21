@@ -48,8 +48,10 @@ this.first(function()
   this.find('.table .comments').click(function()
   {
     var url = ['/talk', $(this).attr('data-tid')];
-    draw.html(phoxy.DeferRender(url));
     phoxy.ChangeHash(url);
+    draw.html(phoxy.DeferRender(url));
+
+    $(this).parents('tr').first().removeClass('unread');
   })
 })
 %>
