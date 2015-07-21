@@ -47,6 +47,7 @@ var warmup_obj =
       history.pushState({}, document.title, '/' + url);
 
       $('body').trigger('new.page');
+      $('.modal').modal('hide');
       return false;
     }
 
