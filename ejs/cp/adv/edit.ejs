@@ -1,4 +1,4 @@
-<div>
+<div class='edit adv' data-id='<%@ this.adv.id %>'>
   <% this.DeferRender('cp/adv/index', this) %>
 </div>
 
@@ -16,9 +16,62 @@ this.DeferCascade(function()
   for (var k in this.adv.images)
   {
     var v = this.adv.images[k];
-    target.append(phoxy.DeferRender('image/view.charged', {image: v}));
+    target.append(phoxy.DeferRender('image/view.charged', {image: v, iid: this.adv.iid[k]}));
   }
 
   first.find('.category.select').next().find('[data-id="' + this.adv.category +'"]').click();
+})
+
+// Enchance edit button
+function CollectImages()
+{ // todo: through chain
+  var images = [];
+  __context.first().find('.files.to.upload img.ok').each(function()
+  { // only who uploaded success
+    images.push(
+    {
+      id: $(this).attr('iid'),
+      name: $(this).attr('name'),
+    });
+  })
+
+  __context.first().find('.files.to.show img[iid]').each(function()
+  { // only who loaded success
+    images.push(
+    {
+      id: $(this).attr('iid'),
+      name: $(this).attr('src'),
+    });
+  })
+
+  return images;
+}
+
+this.DeferCascade(function()
+{
+  var first = this.first();
+
+  debugger;
+  first
+    .find('.submit.button')
+    .html('Изменить')
+    .unbind('click')
+    .click(function()
+  {
+    var change_obj =
+    {
+      'name': first.find('.name input').val(),
+      'descr': first.find('.descr textarea').val(),
+      'category': first.find('.category.select').attr('data-id'),
+      'images': CollectImages(),
+    };
+
+    phoxy.ApiRequest(['cp/adv/Edit', __context.adv.id, change_obj], function(r)
+    {
+      if (typeof r.refuse != 'undefined')
+        return;
+      phoxy.MenuCall(['cp/adv', r.data.Edit]);
+    })
+  })
 })
 %>

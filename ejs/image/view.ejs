@@ -9,8 +9,11 @@
 this.first(function()
 {
   var dimmer = this.find('.dimmer');
-  this.find('img').attr('src', __context.image).load(function()
+  var img = this.find('img');
+
+  img.attr('src', __context.image).load(function()
   {
+    img.attr('iid', __context.iid);
     dimmer.remove();
   })
 })

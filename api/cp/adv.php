@@ -46,6 +46,11 @@ class adv extends api
 
   protected function ShowAdv($id)
   {
+    return $this->Show($id);
+  }
+
+  protected function Show($id)
+  {
     return
     [
       "design" => "cp/adv/show",
@@ -90,8 +95,9 @@ class adv extends api
     return db::Query("SELECT * FROM public.adv WHERE id=$1", [$id], true);;
   }
 
-  protected function edit()
+  protected function edit($id = null, $array = null)
   {
+    if ($id == null)
     return
     [
       "design" => "cp/adv/edit",
@@ -100,5 +106,41 @@ class adv extends api
         "adv" => $this->info($this->adv),
       ]
     ];
+
+    $me = $this('api', 'auth')->uid();
+    phoxy_protected_assert($this->Owner($id), "Нужно быть автором обьявления!");
+
+    $urls = [];
+    $iids = [];
+    foreach ($array->images as $img)
+    {
+      $iid = (int)$img->id;
+      if (!$iid)
+        continue;
+      $urls[] = $img->name;
+      $iids[] = $img->id;
+    }
+
+    $res = db::Query(
+      "UPDATE public.adv
+        SET name = $2
+          , descr = $3
+          , category = $4
+          , images = $5
+          , iid = $6
+        WHERE id = $1
+        RETURNING id
+      ",
+      [
+        (int)$id,
+        $array->name,
+        $array->descr,
+        $array->category,
+        $urls,
+        $iids,
+      ], true);
+
+    phoxy_protected_assert($res->id == $id, "Не удалось сохранить изменения :(");
+    return $res->id;
   }
 }
