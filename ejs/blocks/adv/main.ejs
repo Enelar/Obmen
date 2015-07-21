@@ -9,6 +9,11 @@
       <a class='ui title header' href='/cp/adv(<%@ this.adv.id %>)'>
         <%@ this.adv.name %>
       </a>
+<% if (this.adv.owner == uid()) { %>
+      <a href='/cp/adv(<%@ this.adv.id %>)/edit' class='edit link'>
+        <i class='write icon'></i>
+      </a>
+<% } %>
 
       <div class="ui tiny grey header date">
         Обьявление #<%@ this.adv.id %>
