@@ -31,10 +31,17 @@ this.first(function()
     onHide:
       function()
       {
-        __context.first().remove();
+        if (phoxy.state.first_page)
+          return;
         if (typeof __context.original_callstack == 'function')
           return __context.original_callstack();
         phoxy.Log(3, "Login modal: No 'catch' statement detected");
+      }
+    ,
+    onHidden:
+      function()
+      {
+        __context.first().remove();
       }
   });
 

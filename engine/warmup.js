@@ -11,6 +11,7 @@ var warmup_obj =
     phoxy._EarlyStage.sync_require.push("//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js");
     phoxy._EarlyStage.EntryPoint();
     phoxy.state.early.optional.lazy = 4;
+    phoxy.state.first_page = true;
   },
   OnBeforeCompile: function()
   {
@@ -99,7 +100,10 @@ var warmup_obj =
 
     phoxy.AJAX(location.pathname.substr(1) + location.search, function(r)
     {
-      phoxy.ApiAnswer(r);
+      phoxy.ApiAnswer(r, function()
+        {
+          phoxy.state.first_page = false;
+        });
       phoxy.Log(3, "First page rendered");
 
       if (r.stop_if_first)
