@@ -51,6 +51,7 @@ class adv extends api
 
   protected function Show($id)
   {
+    $this('api', 'auth')->get_uid();
     return
     [
       "design" => "cp/adv/show",
