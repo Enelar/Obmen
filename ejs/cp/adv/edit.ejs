@@ -5,9 +5,18 @@
 <%
 this.DeferCascade(function()
 {
-debugger;
   var first = this.first();
   first.find('.name input').val(this.adv.name);
   first.find('.descr input').val(this.adv.descr);
+
+  var target = first.find('.image.upload.index');
+  target.prepend("<div class='files to show'></div>");
+  target = target.children().first();
+
+  for (var k in this.adv.images)
+  {
+    var v = this.adv.images[k];
+    target.append(phoxy.DeferRender('image/view.charged', {image: v}));
+  }
 })
 %>

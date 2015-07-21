@@ -1,0 +1,17 @@
+<div class='ui small image'>
+  <div class="ui active dimmer">
+    <div class="ui loader"></div>
+  </div>
+  <img/>
+</div>
+
+<%
+this.first(function()
+{
+  var dimmer = this.find('.dimmer');
+  this.find('img').attr('src', __context.image).load(function()
+  {
+    dimmer.remove();
+  })
+})
+%>
