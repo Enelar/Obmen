@@ -6,6 +6,12 @@
   {
     var v = this.list[k];
     var not_me = v.from == uid() ? v.to : v.from;
+
+    if (v.text == undefined)
+    {
+      v.uid = v.from;
+      v.text = "Привет, давай поменяемся?";
+    }
   %>
     <tr class='<%@ v.unread > 0 ? 'unread' : '' %>'>
       <td>
