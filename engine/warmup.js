@@ -46,7 +46,9 @@ var warmup_obj =
       }
 
       console.log(9, "History push", url);
-      history.pushState({}, document.title, '/' + url);
+      if (url[0] != '/')
+        url = '/' + url;
+      history.pushState({}, document.title, url);
 
       $('body').trigger('new.page');
       $('.modal').modal('hide');
