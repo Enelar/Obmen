@@ -110,15 +110,18 @@ class adv extends api
     $me = $this('api', 'auth')->uid();
     phoxy_protected_assert($this->Owner($id), "Нужно быть автором обьявления!");
 
+    $imageobj = $this('api/utils', 'image');
+
+
     $urls = [];
     $iids = [];
-    foreach ($array->images as $img)
+    foreach ($array->images as $image)
     {
-      $iid = (int)$img->id;
+      $iid = (int)$image->id;
       if (!$iid)
         continue;
-      $urls[] = $img->name;
-      $iids[] = $img->id;
+      $urls[] = $imageobj->LocationById($image->id);
+      $iids[] = $image->id;
     }
 
     $res = db::Query(

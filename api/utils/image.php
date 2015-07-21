@@ -16,6 +16,12 @@ class image extends api
     return $this->base_prefix.$res['name'].".".$res['ext'];
   }
 
+  public function LocationById( $id )
+  {
+    $res =  db::Query("SELECT * FROM utils.images WHERE iid=$1", [$id], true);
+    return $this->base_prefix.$res['name'].".".$res['ext'];
+  }
+
   public function info( $name )
   {
     return db::Query("SELECT * FROM utils.images WHERE name=$1", [$name], true);
