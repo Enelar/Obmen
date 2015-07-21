@@ -110,7 +110,7 @@ class adv extends api
     $me = $this('api', 'auth')->uid();
     phoxy_protected_assert($this->Owner($id), "Нужно быть автором обьявления!");
 
-    $imageobj = $this('api/utils', 'image');
+    $imageobj = $this('api/utils/image', 'upload');
 
 
     $urls = [];

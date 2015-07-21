@@ -129,6 +129,12 @@ class upload extends api
     return $res->iid;
   }
 
+  public function LocationById( $id )
+  {
+    $res =  db::Query("SELECT * FROM utils.images WHERE iid=$1", [$id], true);
+    return $this->base_prefix.$res['name'].".".$res['ext'];
+  }
+
   public function LocationByName( $name )
   {
     $res = $this->info($name);
