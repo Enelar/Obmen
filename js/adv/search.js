@@ -45,7 +45,10 @@ search.Active = function()
 
 search.Activate = function()
 {
-  $('body').addClass('searching');
+  $('body').addClass('searching').one('new.page', function()
+    {
+      search.DeActivate();
+    });
 }
 
 search.DeActivate = function()
