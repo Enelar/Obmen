@@ -52,6 +52,7 @@ this.first(function()
     draw.html(phoxy.DeferRender(url));
 
     $(this).parents('tr').first().removeClass('unread');
+    $('#envelope').html(phoxy.DeferRender('talk/Notifications'));
   })
 })
 %>
