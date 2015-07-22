@@ -24,11 +24,13 @@ else
   <div class='ui list'>
     <div class='item'>
       <div class='ui small image'>
+        <a href='/cp/adv(<%@ v.id %>)'>
 <%
   if (!v.images)
     v.images = ["/img/placeholder.png"];
 %>
-        <img src='<%@ v.images[0] %>' />
+          <img src='<%@ v.images[0] %>' />
+        </a>
       </div>
       <div class='content'>
         <a class='header' href='/cp/adv(<%@ v.id %>)'>
