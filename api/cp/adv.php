@@ -93,6 +93,7 @@ class adv extends api
 
   public function info($id)
   {
+    $this('api', 'auth')->get_uid(); // any advertisment information isnt cacheable
     return db::Query("SELECT * FROM public.adv WHERE id=$1", [$id], true);;
   }
 
